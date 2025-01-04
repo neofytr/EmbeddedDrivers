@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include "STM32F401.h"
+#include <stdlib.h>
 
 #define GPIOA_EN (1U << 0)
 #define LED_PIN (1U << 5)
@@ -23,6 +24,8 @@ int main(void)
 
     // No pull-up or pull-down
     GPIOA->PUPDR &= ~(3U << 10);
+
+    // void *ptr = malloc(10);
 
     while (1)
     {

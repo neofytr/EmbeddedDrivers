@@ -8,6 +8,7 @@ SRC_DIR = source
 CORESYS_DIR = ../coresys
 CORE_INC_DIR = ../coresys/includes
 STARTUP_DIR = $(CORESYS_DIR)/startup
+SYSCALL_DIR = $(CORESYS_DIR)/syscalls
 LINKER_DIR = $(CORESYS_DIR)/linker_script
 OUTPUT_DIR = binaries
 
@@ -24,24 +25,34 @@ CFLAGS = -mcpu=cortex-m4 \
          -Wall \
          -Wextra \
          -g3 \
-         -nostdlib \
-         -nostartfiles \
          -I$(INC_DIR) \
          -I$(CORE_INC_DIR)
 
 LDFLAGS = -T$(LINKER_DIR)/linker_script.ld \
-          -Wl,-Map=$(OUTPUT_DIR)/$(TARGET).map \
-          --specs=nano.specs \
-          --specs=nosys.specs \
-          -nostdlib
+ -Wl,-Map=$(OUTPUT_DIR)/$(TARGET).map \
+ -mcpu=cortex-m4 \
+ -mthumb \
+ -mfloat-abi=hard \
+ -mfpu=fpv4-sp-d16 \
+ --specs=nano.specs
+
+# Added -mcpu=cortex-m4 to specify the processor
+# Added -mthumb for Thumb instruction set
+# This ensures consistent ABI settings throughout both compilation and linking stages, since we're linking with the nano C library
+
+# --specs=nano.specs instructs the linker to use the nano libc; 
+# --specs=nosys.specs instructs the linker to not use any systems calls; we don't need this
+# since we've implemented the syscalls
 
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 STARTUP_SRC = $(STARTUP_DIR)/startup.c
+SYSCALL_SRC = $(SYSCALL_DIR)/syscall.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OUTPUT_DIR)/%.o)
 STARTUP_OBJ = $(OUTPUT_DIR)/startup.o
+SYSCALL_OBJ = $(OUTPUT_DIR)/syscall.o
 
-all: $(OUTPUT_DIR)/$(TARGET).bin $(OUTPUT_DIR)/$(TARGET).asm
+all: $(OUTPUT_DIR)/$(TARGET).bin $(OUTPUT_DIR)/$(TARGET).asm 
 
 $(OUTPUT_DIR)/$(TARGET).bin: $(OUTPUT_DIR)/$(TARGET).elf
 	$(OBJCOPY) -O binary $< $@
@@ -49,13 +60,16 @@ $(OUTPUT_DIR)/$(TARGET).bin: $(OUTPUT_DIR)/$(TARGET).elf
 $(OUTPUT_DIR)/$(TARGET).asm: $(OUTPUT_DIR)/$(TARGET).elf
 	$(OBJDUMP) -D $< > $@
 
-$(OUTPUT_DIR)/$(TARGET).elf: $(OBJS) $(STARTUP_OBJ)
-	$(LD) $(OBJS) $(STARTUP_OBJ) $(LDFLAGS) -o $@
+$(OUTPUT_DIR)/$(TARGET).elf: $(OBJS) $(STARTUP_OBJ) $(SYSCALL_OBJ)
+	$(LD) $(OBJS) $(STARTUP_OBJ) $(SYSCALL_OBJ) $(LDFLAGS) -o $@
 
 $(OUTPUT_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OUTPUT_DIR)/startup.o: $(STARTUP_DIR)/startup.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OUTPUT_DIR)/syscall.o: $(SYSCALL_DIR)/syscall.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

@@ -23,9 +23,9 @@ SECTIONS
     {
         . = ALIGN(4);
         *(.text)           
-        *(.text*)          /* Add .text* to catch all text sections */
+        *(.text*)          
         *(.rodata)         
-        *(.rodata*)        /* Add .rodata* to catch all rodata sections */
+        *(.rodata*)        
         . = ALIGN(4);
         _etext = .;
     } > FLASH
@@ -35,25 +35,24 @@ SECTIONS
     .data :
     {
         . = ALIGN(4);
-        _sdata = .;        /* Start of .data section */
+        _sdata = .;        
         *(.data)           
-        *(.data*)          /* Add .data* to catch all data sections */
+        *(.data*)         
         . = ALIGN(4);
-        _edata = .;        /* End of .data section */
+        _edata = .;       
     } > SRAM AT > FLASH
 
     .bss :
     {
         . = ALIGN(4);
-        _bss_start = .;    /* Fixed symbol name and added underscore */
+        __bss_start__ = .;    
         *(.bss)
-        *(.bss*)           /* Add .bss* to catch all bss sections */
+        *(.bss*)           
         *(COMMON)
         . = ALIGN(4);
-        _bss_end = .;      /* Fixed symbol name and added underscore */
+        __bss_end__ = .;      
     } > SRAM
 
-    /* Stack section - place at start of SRAM */
     .stack (NOLOAD) :
     {
         . = ALIGN(8);
@@ -63,7 +62,6 @@ SECTIONS
         _stack_end = .;
     } > SRAM
 
-    /* Heap section - place after BSS */
     .heap (NOLOAD) :
     {
         . = ALIGN(8);
@@ -71,10 +69,9 @@ SECTIONS
         . = . + __max_heap_size;
         . = ALIGN(8);
         _heap_end = .;
-        end = .;           /* For C standard library */
+        _end = .;           
     } > SRAM
 
-    /* Discard unused sections */
     /DISCARD/ :
     {
         *(.comment)
@@ -83,5 +80,4 @@ SECTIONS
     }
 }
 
-/* Stack top for initial SP */
 _estack = ORIGIN(SRAM) + LENGTH(SRAM);

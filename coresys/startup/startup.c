@@ -8,7 +8,7 @@
 void reset_handler(void);
 void default_handler(void);
 
-extern uint32_t _etext, _sdata, _edata, _bss_start, _bss_end, _sidata;
+extern uint32_t _etext, _sdata, _edata, __bss_start__, __bss_end__, _sidata;
 extern int main(void);
 
 #define VECTOR_TABLE_LEN 84
@@ -173,8 +173,8 @@ __attribute__((used)) void reset_handler(void)
 
     // initialize the .bss section to zero in SRAM
 
-    size = (uint32_t)&_bss_end - (uint32_t)&_bss_start;
-    dst_ptr = (uint8_t *)&_bss_start;
+    size = (uint32_t)&__bss_end__ - (uint32_t)&__bss_start__;
+    dst_ptr = (uint8_t *)&__bss_start__;
 
     for (uint32_t counter = 0; counter < size; counter++)
     {
