@@ -8,7 +8,7 @@ CFLAGS = -mcpu=cortex-m4 \
 		 -pedantic \
 		 -O0
 
-# cortex-m4 only supports thumb instructions
+# cortex-m4 only supports thumb instructions (16-bit instructions)
 # cortex-m4 has a floating-point unit with 16 single-precision registers
 
 all: $1
@@ -18,5 +18,8 @@ all: $1
 
 %.asm: %.c 
 	$(CC) $(CFLAGS) -S $^ -o $@
+
+dump:
+	$(CDUMP) -D startup.o > dump.txt
 
 
