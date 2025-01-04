@@ -3,12 +3,12 @@ ENTRY(reset_handler)
 MEMORY 
 {
     FLASH(rx): ORIGIN = 0x08000000, LENGTH = 512K
-    SRAM(rwx): ORIGIN = 0x20000000, LENGTH = 96K
+    SRAM(xrw): ORIGIN = 0x20000000, LENGTH = 96K
 }
 
 /* Define stack and heap sizes */
-__max_heap_size = 0x400;
-__max_stack_size = 0x200;
+__max_heap_size = 0x400;  /* 1KB heap */
+__max_stack_size = 0x200; /* 512B stack */
 
 SECTIONS
 {
@@ -23,59 +23,65 @@ SECTIONS
     {
         . = ALIGN(4);
         *(.text)           
-        *(.rodata)         /* Typically include rodata with text */
+        *(.text*)          /* Add .text* to catch all text sections */
+        *(.rodata)         
+        *(.rodata*)        /* Add .rodata* to catch all rodata sections */
         . = ALIGN(4);
         _etext = .;
     } > FLASH
 
-    _sidata = LOADADDR(.data);  /* load address for .data initialization */
+    _sidata = LOADADDR(.data);
 
     .data :
     {
         . = ALIGN(4);
-        _sdata = .;
-        *(.data)
+        _sdata = .;        /* Start of .data section */
+        *(.data)           
+        *(.data*)          /* Add .data* to catch all data sections */
         . = ALIGN(4);
-        _edata = .;
-    } >SRAM AT> FLASH
-
-    /*
-
-    >SRAM AT> FLASH
-
-    This indicates that the section will execute in SRAM. The linker places the section at the
-    specified address in SRAM for the program to access and use at runtime.
-
-    The AT> part specifies the load address of the section, which is in the flash memory in this 
-    case. The section's initial data is stored in flash and must be copied to SRAM during the
-    microcontroller's startup routine
-
-    */
+        _edata = .;        /* End of .data section */
+    } > SRAM AT > FLASH
 
     .bss :
     {
         . = ALIGN(4);
-        _bss_start = .;    
+        _bss_start = .;    /* Fixed symbol name and added underscore */
         *(.bss)
+        *(.bss*)           /* Add .bss* to catch all bss sections */
         *(COMMON)
         . = ALIGN(4);
-        _bss_end = .;     
+        _bss_end = .;      /* Fixed symbol name and added underscore */
     } > SRAM
 
-    /* Add stack and heap sections */
-    .heap :
+    /* Stack section - place at start of SRAM */
+    .stack (NOLOAD) :
     {
         . = ALIGN(8);
-        PROVIDE ( end = . );
-        PROVIDE ( _end = . );
-        . = . + __max_heap_size;
-        . = ALIGN(8);
-    } > SRAM
-
-    .stack :
-    {
-        . = ALIGN(8);
+        _stack_start = .;
         . = . + __max_stack_size;
         . = ALIGN(8);
+        _stack_end = .;
     } > SRAM
+
+    /* Heap section - place after BSS */
+    .heap (NOLOAD) :
+    {
+        . = ALIGN(8);
+        _heap_start = .;
+        . = . + __max_heap_size;
+        . = ALIGN(8);
+        _heap_end = .;
+        end = .;           /* For C standard library */
+    } > SRAM
+
+    /* Discard unused sections */
+    /DISCARD/ :
+    {
+        *(.comment)
+        *(.ARM.attributes)
+        *(.note.GNU-stack)
+    }
 }
+
+/* Stack top for initial SP */
+_estack = ORIGIN(SRAM) + LENGTH(SRAM);

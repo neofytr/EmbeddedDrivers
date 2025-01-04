@@ -13,10 +13,6 @@
 
 #define __IO volatile
 
-volatile int size = 10;
-volatile int hello;
-
-
 int main(void)
 {
     // 1. enable clock access to GPIOA
@@ -30,11 +26,11 @@ int main(void)
         // GPIOA_OD_R ^= PIN5
         // GPIOA->ODR ^= PIN5; // XOR just inverts the bit number in OD_R that is set to 1 in PIN5
         GPIOA->BSRR = PIN5;
-        for (volatile size_t i = 0; i < 1000000; i++)
+        for (volatile size_t i = 0; i < 100000; i++)
             ;
 
         GPIOA->BSRR = (1UL << 21);
-        for (volatile size_t i = 0; i < 1000000; i++)
+        for (volatile size_t i = 0; i < 100000; i++)
             ;
     }
 }

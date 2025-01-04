@@ -5,75 +5,75 @@ main.out:     file format elf32-littlearm
 Disassembly of section .isr_vector:
 
 08000000 <vectors>:
- 8000000:	20018000 			@ <UNDEFINED> instruction: 20018000
- 8000004:	080001b5 			@ <UNDEFINED> instruction: 080001b5
- 8000008:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 800000c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000010:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000014:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000018:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000000:	20018000 	andcs	r8, r1, r0
+ 8000004:	080001b5 	stmdaeq	r0, {r0, r2, r4, r5, r7, r8}
+ 8000008:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 800000c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000010:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000014:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000018:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
 	...
- 800002c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000030:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000034:	00000000 			@ <UNDEFINED> instruction: 00000000
- 8000038:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 800003c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000040:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000044:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000048:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 800004c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000050:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000054:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000058:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 800005c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000060:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000064:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000068:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 800006c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000070:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000074:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000078:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 800007c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000080:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000084:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000088:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 800008c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000090:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000094:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000098:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 800009c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000a0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000a4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000a8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000ac:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000b0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000b4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000b8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000bc:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000c0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000c4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000c8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000cc:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000d0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000d4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000d8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000dc:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000e0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000e4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000e8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000ec:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000f0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000f4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000f8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 80000fc:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000100:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000104:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000108:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 800010c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000110:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000114:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 8000118:	080001c3 			@ <UNDEFINED> instruction: 080001c3
- 800011c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800002c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000030:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000034:	00000000 	andeq	r0, r0, r0
+ 8000038:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 800003c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000040:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000044:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000048:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 800004c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000050:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000054:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000058:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 800005c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000060:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000064:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000068:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 800006c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000070:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000074:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000078:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 800007c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000080:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000084:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000088:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 800008c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000090:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000094:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000098:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 800009c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000a0:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000a4:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000a8:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000ac:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000b0:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000b4:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000b8:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000bc:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000c0:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000c4:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000c8:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000cc:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000d0:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000d4:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000d8:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000dc:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000e0:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000e4:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000e8:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000ec:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000f0:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000f4:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000f8:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 80000fc:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000100:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000104:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000108:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 800010c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000110:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000114:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 8000118:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
+ 800011c:	08000235 	stmdaeq	r0, {r0, r2, r4, r5, r9}
 	...
 
 Disassembly of section .text:
@@ -120,65 +120,72 @@ Disassembly of section .text:
  80001a2:	d9f8      	bls.n	8000196 <main+0x46>
  80001a4:	e7e3      	b.n	800016e <main+0x1e>
  80001a6:	bf00      	nop
- 80001a8:	40023800 			@ <UNDEFINED> instruction: 40023800
- 80001ac:	40020000 			@ <UNDEFINED> instruction: 40020000
- 80001b0:	000f423f 			@ <UNDEFINED> instruction: 000f423f
+ 80001a8:	40023800 	andmi	r3, r2, r0, lsl #16
+ 80001ac:	40020000 	andmi	r0, r2, r0
+ 80001b0:	0001869f 	muleq	r1, pc, r6	@ <UNPREDICTABLE>
 
 080001b4 <reset_handler>:
- 80001b4:	b480      	push	{r7}
- 80001b6:	af00      	add	r7, sp, #0
- 80001b8:	bf00      	nop
- 80001ba:	46bd      	mov	sp, r7
- 80001bc:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80001c0:	4770      	bx	lr
+ 80001b4:	b580      	push	{r7, lr}
+ 80001b6:	b086      	sub	sp, #24
+ 80001b8:	af00      	add	r7, sp, #0
+ 80001ba:	4a19      	ldr	r2, [pc, #100]	@ (8000220 <reset_handler+0x6c>)
+ 80001bc:	4b19      	ldr	r3, [pc, #100]	@ (8000224 <reset_handler+0x70>)
+ 80001be:	1ad3      	subs	r3, r2, r3
+ 80001c0:	607b      	str	r3, [r7, #4]
+ 80001c2:	4b18      	ldr	r3, [pc, #96]	@ (8000224 <reset_handler+0x70>)
+ 80001c4:	617b      	str	r3, [r7, #20]
+ 80001c6:	4b18      	ldr	r3, [pc, #96]	@ (8000228 <reset_handler+0x74>)
+ 80001c8:	613b      	str	r3, [r7, #16]
+ 80001ca:	2300      	movs	r3, #0
+ 80001cc:	60fb      	str	r3, [r7, #12]
+ 80001ce:	e00a      	b.n	80001e6 <reset_handler+0x32>
+ 80001d0:	693a      	ldr	r2, [r7, #16]
+ 80001d2:	1c53      	adds	r3, r2, #1
+ 80001d4:	613b      	str	r3, [r7, #16]
+ 80001d6:	697b      	ldr	r3, [r7, #20]
+ 80001d8:	1c59      	adds	r1, r3, #1
+ 80001da:	6179      	str	r1, [r7, #20]
+ 80001dc:	7812      	ldrb	r2, [r2, #0]
+ 80001de:	701a      	strb	r2, [r3, #0]
+ 80001e0:	68fb      	ldr	r3, [r7, #12]
+ 80001e2:	3301      	adds	r3, #1
+ 80001e4:	60fb      	str	r3, [r7, #12]
+ 80001e6:	68fa      	ldr	r2, [r7, #12]
+ 80001e8:	687b      	ldr	r3, [r7, #4]
+ 80001ea:	429a      	cmp	r2, r3
+ 80001ec:	d3f0      	bcc.n	80001d0 <reset_handler+0x1c>
+ 80001ee:	4a0f      	ldr	r2, [pc, #60]	@ (800022c <reset_handler+0x78>)
+ 80001f0:	4b0f      	ldr	r3, [pc, #60]	@ (8000230 <reset_handler+0x7c>)
+ 80001f2:	1ad3      	subs	r3, r2, r3
+ 80001f4:	607b      	str	r3, [r7, #4]
+ 80001f6:	4b0e      	ldr	r3, [pc, #56]	@ (8000230 <reset_handler+0x7c>)
+ 80001f8:	617b      	str	r3, [r7, #20]
+ 80001fa:	2300      	movs	r3, #0
+ 80001fc:	60bb      	str	r3, [r7, #8]
+ 80001fe:	e007      	b.n	8000210 <reset_handler+0x5c>
+ 8000200:	697b      	ldr	r3, [r7, #20]
+ 8000202:	1c5a      	adds	r2, r3, #1
+ 8000204:	617a      	str	r2, [r7, #20]
+ 8000206:	2200      	movs	r2, #0
+ 8000208:	701a      	strb	r2, [r3, #0]
+ 800020a:	68bb      	ldr	r3, [r7, #8]
+ 800020c:	3301      	adds	r3, #1
+ 800020e:	60bb      	str	r3, [r7, #8]
+ 8000210:	68ba      	ldr	r2, [r7, #8]
+ 8000212:	687b      	ldr	r3, [r7, #4]
+ 8000214:	429a      	cmp	r2, r3
+ 8000216:	d3f3      	bcc.n	8000200 <reset_handler+0x4c>
+ 8000218:	f7ff ff9a 	bl	8000150 <main>
+ 800021c:	bf00      	nop
+ 800021e:	e7fd      	b.n	800021c <reset_handler+0x68>
+ 8000220:	20000000 	andcs	r0, r0, r0
+ 8000224:	20000000 	andcs	r0, r0, r0
+ 8000228:	0800023c 	stmdaeq	r0, {r2, r3, r4, r5, r9}
+ 800022c:	20000000 	andcs	r0, r0, r0
+ 8000230:	20000000 	andcs	r0, r0, r0
 
-080001c2 <default_handler>:
- 80001c2:	b480      	push	{r7}
- 80001c4:	af00      	add	r7, sp, #0
- 80001c6:	bf00      	nop
- 80001c8:	e7fd      	b.n	80001c6 <default_handler+0x4>
-	...
-
-Disassembly of section .data:
-
-20000000 <size>:
-20000000:	0000000a 			@ <UNDEFINED> instruction: 0000000a
-
-Disassembly of section .comment:
-
-00000000 <.comment>:
-   0:	3a434347 			@ <UNDEFINED> instruction: 3a434347
-   4:	72412820 			@ <UNDEFINED> instruction: 72412820
-   8:	4e47206d 			@ <UNDEFINED> instruction: 4e47206d
-   c:	6f542055 			@ <UNDEFINED> instruction: 6f542055
-  10:	68636c6f 			@ <UNDEFINED> instruction: 68636c6f
-  14:	206e6961 			@ <UNDEFINED> instruction: 206e6961
-  18:	322e3431 			@ <UNDEFINED> instruction: 322e3431
-  1c:	6c65522e 			@ <UNDEFINED> instruction: 6c65522e
-  20:	42282031 			@ <UNDEFINED> instruction: 42282031
-  24:	646c6975 			@ <UNDEFINED> instruction: 646c6975
-  28:	6d726120 			@ <UNDEFINED> instruction: 6d726120
-  2c:	2e34312d 			@ <UNDEFINED> instruction: 2e34312d
-  30:	29293235 			@ <UNDEFINED> instruction: 29293235
-  34:	2e343120 			@ <UNDEFINED> instruction: 2e343120
-  38:	20312e32 			@ <UNDEFINED> instruction: 20312e32
-  3c:	34323032 			@ <UNDEFINED> instruction: 34323032
-  40:	39313131 			@ <UNDEFINED> instruction: 39313131
-	...
-
-Disassembly of section .ARM.attributes:
-
-00000000 <.ARM.attributes>:
-   0:	00003341 			@ <UNDEFINED> instruction: 00003341
-   4:	61656100 			@ <UNDEFINED> instruction: 61656100
-   8:	01006962 			@ <UNDEFINED> instruction: 01006962
-   c:	00000029 			@ <UNDEFINED> instruction: 00000029
-  10:	2d453705 			@ <UNDEFINED> instruction: 2d453705
-  14:	0d06004d 			@ <UNDEFINED> instruction: 0d06004d
-  18:	02094d07 			@ <UNDEFINED> instruction: 02094d07
-  1c:	0412060a 			@ <UNDEFINED> instruction: 0412060a
-  20:	01150114 			@ <UNDEFINED> instruction: 01150114
-  24:	01180317 			@ <UNDEFINED> instruction: 01180317
-  28:	011a0119 			@ <UNDEFINED> instruction: 011a0119
-  2c:	011c011b 			@ <UNDEFINED> instruction: 011c011b
-  30:	0122061e 			@ <UNDEFINED> instruction: 0122061e
+08000234 <default_handler>:
+ 8000234:	b480      	push	{r7}
+ 8000236:	af00      	add	r7, sp, #0
+ 8000238:	bf00      	nop
+ 800023a:	e7fd      	b.n	8000238 <default_handler+0x4>

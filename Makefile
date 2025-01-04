@@ -8,10 +8,13 @@ CFLAGS = -mcpu=cortex-m4 \
 		 -std=c11 \
 		 -pedantic \
 		 -O0 \
+		 --specs=nano.specs \
 		 -Wall \
-		 -Wextra
+		 -Wextra \
+		 -ffunction-sections \
+		 -fdata-sections 
 LINKER_SCRIPT = linker_script.ld
-LDFLAGS = -Map=main.map
+LDFLAGS = -Map=main.map --print-gc-sections --gc-sections
 
 # cortex-m4 only supports thumb instructions (16-bit instructions)
 # cortex-m4 has a floating-point unit with 16 single-precision registers
@@ -29,5 +32,9 @@ dump:
 	$(CDUMP) -D main.out > dump.txt
 
 clean:
-	rm -rf *.o *.asm *.out *.txt
+	rm -rf *.o *.asm *.out *.txt *.map
+
+flash:
+	st-flash write main.out 0x08000000
+	st-flash reset
 

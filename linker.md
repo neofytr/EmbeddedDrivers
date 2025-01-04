@@ -1,7 +1,3 @@
-Certainly! Understanding **load addresses** and **execution addresses** is fundamental when working with linker scripts, especially in embedded systems where memory management is crucial. Let's break down these concepts and then delve into the specifics of `> SRAM AT> FLASH` and `> FLASH`.
-
----
-
 ## 1. **Load Address vs. Execution Address**
 
 ### **Load Address**

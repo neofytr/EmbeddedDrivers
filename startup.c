@@ -9,6 +9,7 @@ void reset_handler(void);
 void default_handler(void);
 
 extern uint32_t _etext, _sdata, _edata, _bss_start, _bss_end, _sidata;
+extern int main(void);
 
 #define VECTOR_TABLE_LEN 84
 
@@ -156,7 +157,7 @@ volatile uint32_t vectors[VECTOR_TABLE_LEN] __attribute__((section(".isr_vector"
     (uint32_t)&SPI4_handler,               // SPI4 handler
 };
 
-void reset_handler(void)
+__attribute__((used)) void reset_handler(void)
 {
     // copy .data section to SRAM
     uint32_t size = (uint32_t)&_edata - (uint32_t)&_sdata; // using _edata or _sdata directly in the C program will
@@ -173,7 +174,7 @@ void reset_handler(void)
     // initialize the .bss section to zero in SRAM
 
     size = (uint32_t)&_bss_end - (uint32_t)&_bss_start;
-    dst_ptr = (uint8_t *)_bss_start;
+    dst_ptr = (uint8_t *)&_bss_start;
 
     for (uint32_t counter = 0; counter < size; counter++)
     {
@@ -182,9 +183,13 @@ void reset_handler(void)
     // call init function of C standard library
 
     // call main()
+    main();
+
+    while (1)
+        ;
 }
 
-void default_handler(void)
+__attribute__((used)) void default_handler(void)
 {
     while (1)
         ;
