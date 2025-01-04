@@ -19,3 +19,12 @@ halt:
 load:
 
 Transfers the elf file from the host machine to the microcontrollers memory
+
+
+# Some trivial info
+
+PC is altered after the instruction has finished executing, by the size of the current instruction to go to the next instruction.
+
+So, when a branch instruction is executing, the PC contains the location of that branch instruction.
+
+So, the linker replaces the label by the offset of the label relative to the branch instruction itself.

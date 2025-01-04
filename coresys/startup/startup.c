@@ -10,6 +10,7 @@ void default_handler(void);
 
 extern uint32_t _etext, _sdata, _edata, __bss_start__, __bss_end__, _sidata;
 extern int main(void);
+extern void __libc_init_array(void);
 
 #define VECTOR_TABLE_LEN 84
 
@@ -181,6 +182,8 @@ __attribute__((used)) void reset_handler(void)
         *dst_ptr++ = 0;
     }
     // call init function of C standard library
+
+    __libc_init_array();
 
     // call main()
     main();

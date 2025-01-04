@@ -42,7 +42,7 @@ LDFLAGS = -T$(LINKER_DIR)/linker_script.ld \
 # since we've implemented the syscalls
 
 SRCS = $(wildcard $(SRC_DIR)/*.c)
-STARTUP_SRC = $(STARTUP_DIR)/startup.c
+STARTUP_SRC = $(STARTUP_DIR)/startup_nostdlib.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OUTPUT_DIR)/%.o)
 STARTUP_OBJ = $(OUTPUT_DIR)/startup.o
@@ -61,7 +61,7 @@ $(OUTPUT_DIR)/$(TARGET).elf: $(OBJS) $(STARTUP_OBJ)
 $(OUTPUT_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OUTPUT_DIR)/startup.o: $(STARTUP_DIR)/startup.c
+$(OUTPUT_DIR)/startup.o: $(STARTUP_DIR)/startup_nostdlib.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
