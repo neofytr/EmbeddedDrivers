@@ -13,6 +13,9 @@
 
 #define __IO volatile
 
+volatile int size = 10;
+volatile int hello;
+
 
 int main(void)
 {
