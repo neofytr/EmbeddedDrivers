@@ -8,6 +8,8 @@
 void reset_handler(void);
 void default_handler(void);
 
+extern uint32_t _etext, _sdata, _edata, _bss_start, _bss_end, _sidata;
+
 #define VECTOR_TABLE_LEN 84
 
 // System handlers
@@ -157,8 +159,26 @@ volatile uint32_t vectors[VECTOR_TABLE_LEN] __attribute__((section(".isr_vector"
 void reset_handler(void)
 {
     // copy .data section to SRAM
+    uint32_t size = (uint32_t)&_edata - (uint32_t)&_sdata; // using _edata or _sdata directly in the C program will
+                                                           // automatically dereference these symbols
+
+    uint8_t *dst_ptr = (uint8_t *)&_sdata;
+    uint8_t *src_ptr = (uint8_t *)&_sidata;
+
+    for (uint32_t counter = 0; counter < size; counter++)
+    {
+        *dst_ptr++ = *src_ptr++;
+    }
+
     // initialize the .bss section to zero in SRAM
 
+    size = (uint32_t)&_bss_end - (uint32_t)&_bss_start;
+    dst_ptr = (uint8_t *)_bss_start;
+
+    for (uint32_t counter = 0; counter < size; counter++)
+    {
+        *dst_ptr++ = 0;
+    }
     // call init function of C standard library
 
     // call main()

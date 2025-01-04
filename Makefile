@@ -11,15 +11,13 @@ CFLAGS = -mcpu=cortex-m4 \
 		 -Wall \
 		 -Wextra
 LINKER_SCRIPT = linker_script.ld
-LDFLAGS = -nostdlib
+LDFLAGS = -Map=main.map
 
 # cortex-m4 only supports thumb instructions (16-bit instructions)
 # cortex-m4 has a floating-point unit with 16 single-precision registers
 
-all: main.o startup.o final.out
-
-%.out: %.o 
-	$(LD) $(LDFLAGS) -T $(LINKER_SCRIPT) $^ -o $@ 
+all: main.o startup.o
+	$(LD) $(LDFLAGS) -T $(LINKER_SCRIPT) $^ -o main.out 
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^ -o $@
@@ -28,7 +26,7 @@ all: main.o startup.o final.out
 	$(CC) $(CFLAGS) -S $^ -o $@
 
 dump:
-	$(CDUMP) -D startup.o > dump.txt
+	$(CDUMP) -D main.out > dump.txt
 
 clean:
 	rm -rf *.o *.asm *.out *.txt

@@ -15,7 +15,7 @@ SECTIONS
     .isr_vector :
     {
         . = ALIGN(4);
-        KEEP(*(.isr_vector))    /* KEEP directive added */
+        KEEP(*(.isr_vector))   
         . = ALIGN(4);
     } > FLASH
 
@@ -23,34 +23,43 @@ SECTIONS
     {
         . = ALIGN(4);
         *(.text)           
-        *(.text*)          /* Added .text* to include all text sections */
         *(.rodata)         /* Typically include rodata with text */
-        *(.rodata*)        /* Added .rodata* to include all rodata sections */
         . = ALIGN(4);
         _etext = .;
     } > FLASH
 
-    _sidata = LOADADDR(.data);  /* Added load address for .data initialization */
+    _sidata = LOADADDR(.data);  /* load address for .data initialization */
 
     .data :
     {
         . = ALIGN(4);
         _sdata = .;
         *(.data)
-        *(.data*)          /* Added .data* to include all data sections */
         . = ALIGN(4);
         _edata = .;
-    } > SRAM AT> FLASH
+    } >SRAM AT> FLASH
+
+    /*
+
+    >SRAM AT> FLASH
+
+    This indicates that the section will execute in SRAM. The linker places the section at the
+    specified address in SRAM for the program to access and use at runtime.
+
+    The AT> part specifies the load address of the section, which is in the flash memory in this 
+    case. The section's initial data is stored in flash and must be copied to SRAM during the
+    microcontroller's startup routine
+
+    */
 
     .bss :
     {
         . = ALIGN(4);
-        _bss_start = .;    /* Changed to consistent naming */
+        _bss_start = .;    
         *(.bss)
-        *(.bss*)           /* Added .bss* to include all bss sections */
-        *(COMMON)          /* Added COMMON sections */
+        *(COMMON)
         . = ALIGN(4);
-        _bss_end = .;      /* Changed to consistent naming */
+        _bss_end = .;     
     } > SRAM
 
     /* Add stack and heap sections */

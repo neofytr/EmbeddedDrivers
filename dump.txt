@@ -1,0 +1,184 @@
+
+main.out:     file format elf32-littlearm
+
+
+Disassembly of section .isr_vector:
+
+08000000 <vectors>:
+ 8000000:	20018000 			@ <UNDEFINED> instruction: 20018000
+ 8000004:	080001b5 			@ <UNDEFINED> instruction: 080001b5
+ 8000008:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800000c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000010:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000014:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000018:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+	...
+ 800002c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000030:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000034:	00000000 			@ <UNDEFINED> instruction: 00000000
+ 8000038:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800003c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000040:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000044:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000048:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800004c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000050:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000054:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000058:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800005c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000060:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000064:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000068:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800006c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000070:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000074:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000078:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800007c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000080:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000084:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000088:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800008c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000090:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000094:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000098:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800009c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000a0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000a4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000a8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000ac:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000b0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000b4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000b8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000bc:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000c0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000c4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000c8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000cc:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000d0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000d4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000d8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000dc:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000e0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000e4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000e8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000ec:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000f0:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000f4:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000f8:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 80000fc:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000100:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000104:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000108:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800010c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000110:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000114:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 8000118:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+ 800011c:	080001c3 			@ <UNDEFINED> instruction: 080001c3
+	...
+
+Disassembly of section .text:
+
+08000150 <main>:
+ 8000150:	b480      	push	{r7}
+ 8000152:	b083      	sub	sp, #12
+ 8000154:	af00      	add	r7, sp, #0
+ 8000156:	4b14      	ldr	r3, [pc, #80]	@ (80001a8 <main+0x58>)
+ 8000158:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 800015a:	4a13      	ldr	r2, [pc, #76]	@ (80001a8 <main+0x58>)
+ 800015c:	f043 0301 	orr.w	r3, r3, #1
+ 8000160:	6313      	str	r3, [r2, #48]	@ 0x30
+ 8000162:	4b12      	ldr	r3, [pc, #72]	@ (80001ac <main+0x5c>)
+ 8000164:	681b      	ldr	r3, [r3, #0]
+ 8000166:	4a11      	ldr	r2, [pc, #68]	@ (80001ac <main+0x5c>)
+ 8000168:	f443 6380 	orr.w	r3, r3, #1024	@ 0x400
+ 800016c:	6013      	str	r3, [r2, #0]
+ 800016e:	4b0f      	ldr	r3, [pc, #60]	@ (80001ac <main+0x5c>)
+ 8000170:	2220      	movs	r2, #32
+ 8000172:	619a      	str	r2, [r3, #24]
+ 8000174:	2300      	movs	r3, #0
+ 8000176:	607b      	str	r3, [r7, #4]
+ 8000178:	e002      	b.n	8000180 <main+0x30>
+ 800017a:	687b      	ldr	r3, [r7, #4]
+ 800017c:	3301      	adds	r3, #1
+ 800017e:	607b      	str	r3, [r7, #4]
+ 8000180:	687b      	ldr	r3, [r7, #4]
+ 8000182:	4a0b      	ldr	r2, [pc, #44]	@ (80001b0 <main+0x60>)
+ 8000184:	4293      	cmp	r3, r2
+ 8000186:	d9f8      	bls.n	800017a <main+0x2a>
+ 8000188:	4b08      	ldr	r3, [pc, #32]	@ (80001ac <main+0x5c>)
+ 800018a:	f44f 1200 	mov.w	r2, #2097152	@ 0x200000
+ 800018e:	619a      	str	r2, [r3, #24]
+ 8000190:	2300      	movs	r3, #0
+ 8000192:	603b      	str	r3, [r7, #0]
+ 8000194:	e002      	b.n	800019c <main+0x4c>
+ 8000196:	683b      	ldr	r3, [r7, #0]
+ 8000198:	3301      	adds	r3, #1
+ 800019a:	603b      	str	r3, [r7, #0]
+ 800019c:	683b      	ldr	r3, [r7, #0]
+ 800019e:	4a04      	ldr	r2, [pc, #16]	@ (80001b0 <main+0x60>)
+ 80001a0:	4293      	cmp	r3, r2
+ 80001a2:	d9f8      	bls.n	8000196 <main+0x46>
+ 80001a4:	e7e3      	b.n	800016e <main+0x1e>
+ 80001a6:	bf00      	nop
+ 80001a8:	40023800 			@ <UNDEFINED> instruction: 40023800
+ 80001ac:	40020000 			@ <UNDEFINED> instruction: 40020000
+ 80001b0:	000f423f 			@ <UNDEFINED> instruction: 000f423f
+
+080001b4 <reset_handler>:
+ 80001b4:	b480      	push	{r7}
+ 80001b6:	af00      	add	r7, sp, #0
+ 80001b8:	bf00      	nop
+ 80001ba:	46bd      	mov	sp, r7
+ 80001bc:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80001c0:	4770      	bx	lr
+
+080001c2 <default_handler>:
+ 80001c2:	b480      	push	{r7}
+ 80001c4:	af00      	add	r7, sp, #0
+ 80001c6:	bf00      	nop
+ 80001c8:	e7fd      	b.n	80001c6 <default_handler+0x4>
+	...
+
+Disassembly of section .data:
+
+20000000 <size>:
+20000000:	0000000a 			@ <UNDEFINED> instruction: 0000000a
+
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	3a434347 			@ <UNDEFINED> instruction: 3a434347
+   4:	72412820 			@ <UNDEFINED> instruction: 72412820
+   8:	4e47206d 			@ <UNDEFINED> instruction: 4e47206d
+   c:	6f542055 			@ <UNDEFINED> instruction: 6f542055
+  10:	68636c6f 			@ <UNDEFINED> instruction: 68636c6f
+  14:	206e6961 			@ <UNDEFINED> instruction: 206e6961
+  18:	322e3431 			@ <UNDEFINED> instruction: 322e3431
+  1c:	6c65522e 			@ <UNDEFINED> instruction: 6c65522e
+  20:	42282031 			@ <UNDEFINED> instruction: 42282031
+  24:	646c6975 			@ <UNDEFINED> instruction: 646c6975
+  28:	6d726120 			@ <UNDEFINED> instruction: 6d726120
+  2c:	2e34312d 			@ <UNDEFINED> instruction: 2e34312d
+  30:	29293235 			@ <UNDEFINED> instruction: 29293235
+  34:	2e343120 			@ <UNDEFINED> instruction: 2e343120
+  38:	20312e32 			@ <UNDEFINED> instruction: 20312e32
+  3c:	34323032 			@ <UNDEFINED> instruction: 34323032
+  40:	39313131 			@ <UNDEFINED> instruction: 39313131
+	...
+
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00003341 			@ <UNDEFINED> instruction: 00003341
+   4:	61656100 			@ <UNDEFINED> instruction: 61656100
+   8:	01006962 			@ <UNDEFINED> instruction: 01006962
+   c:	00000029 			@ <UNDEFINED> instruction: 00000029
+  10:	2d453705 			@ <UNDEFINED> instruction: 2d453705
+  14:	0d06004d 			@ <UNDEFINED> instruction: 0d06004d
+  18:	02094d07 			@ <UNDEFINED> instruction: 02094d07
+  1c:	0412060a 			@ <UNDEFINED> instruction: 0412060a
+  20:	01150114 			@ <UNDEFINED> instruction: 01150114
+  24:	01180317 			@ <UNDEFINED> instruction: 01180317
+  28:	011a0119 			@ <UNDEFINED> instruction: 011a0119
+  2c:	011c011b 			@ <UNDEFINED> instruction: 011c011b
+  30:	0122061e 			@ <UNDEFINED> instruction: 0122061e
