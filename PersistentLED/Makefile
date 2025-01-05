@@ -100,3 +100,6 @@ flash: $(OUTPUT_DIR)/$(TARGET).bin
 	st-flash reset
 
 .PHONY: all clean flash
+
+gdb: $(OUTPUT_DIR)/$(TARGET).elf
+	$(GDB) -q -x $(GDB_CMDS_FILE) ./binaries/output.elf

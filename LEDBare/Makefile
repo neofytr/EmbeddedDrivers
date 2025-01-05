@@ -88,7 +88,6 @@ rcnt_erase:
 	st-flash --connect-under-reset erase
 
 gdb: $(OUTPUT_DIR)/$(TARGET).elf
-	st-util &
 	$(GDB) -q -x $(GDB_CMDS_FILE) ./binaries/output.elf
 
 
