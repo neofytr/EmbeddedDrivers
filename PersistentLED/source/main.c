@@ -3,6 +3,19 @@
 #include "STM32F401.h"
 
 /*
+
+All comments are replaced by a single space during preprocessing stage
+So, comments are valid anywhere u can put atleast a single space in
+
+*/
+
+/*
+
+The compiler folds (i.e., evaluate and replace with the evaluated value) any constant expression at runtime
+
+*/
+
+/*
  * Hardware Configuration:
  * LED is connected to PA5 (Port A, Pin 5)
  *

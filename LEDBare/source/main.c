@@ -19,14 +19,14 @@
 
 int main()
 {
-    *((uint32_t *)(RCC_ANB1ENR)) |= (1UL << RCC_AHB1ENR_GPIOA_BITNO);
+    *((volatile uint32_t *)(RCC_ANB1ENR)) |= (1UL << RCC_AHB1ENR_GPIOA_BITNO);
 
-    *((uint32_t *)(GPIOA_MODER)) |= (1UL << (PIN5 * 2));
-    *((uint32_t *)(GPIOA_MODER)) &= (~(1UL << (PIN5 * 2 + 1)));
+    *((volatile uint32_t *)(GPIOA_MODER)) |= (1UL << (PIN5 * 2));
+    *((volatile uint32_t *)(GPIOA_MODER)) &= (~(1UL << (PIN5 * 2 + 1)));
 
     while (true)
     {
-        *((uint32_t *)(GPIOA_ODR)) ^= (1UL << (PIN5));
+        *((volatile uint32_t *)(GPIOA_ODR)) ^= (1UL << (PIN5));
 
         for (volatile int i = 0; i < 100000; i++)
             ;

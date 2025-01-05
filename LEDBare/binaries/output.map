@@ -693,10 +693,10 @@ LOAD linker stubs
  .debug_macro   0x00001cee       0x16 binaries/syscall.o
  .debug_macro   0x00001d04      0x4fe binaries/syscall.o
 
-.debug_line     0x00000000      0x81e
- .debug_line    0x00000000      0x241 binaries/main.o
- .debug_line    0x00000241      0x275 binaries/startup.o
- .debug_line    0x000004b6      0x368 binaries/syscall.o
+.debug_line     0x00000000      0x820
+ .debug_line    0x00000000      0x243 binaries/main.o
+ .debug_line    0x00000243      0x275 binaries/startup.o
+ .debug_line    0x000004b8      0x368 binaries/syscall.o
 
 .debug_str      0x00000000     0x83e7
  .debug_str     0x00000000     0x83e7 binaries/main.o
