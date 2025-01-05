@@ -1,4 +1,5 @@
 CC = arm-none-eabi-gcc
+GDB = arm-none-eabi-gdb
 LD = arm-none-eabi-gcc
 OBJDUMP = arm-none-eabi-objdump
 OBJCOPY = arm-none-eabi-objcopy
@@ -13,6 +14,7 @@ LINKER_DIR = $(CORESYS_DIR)/linker_script
 OUTPUT_DIR = binaries
 
 TARGET = output
+GDB_CMDS_FILE = gdbcmds.txt
 
 $(shell mkdir -p $(OUTPUT_DIR))
 
@@ -75,6 +77,10 @@ erase:
 
 rcnt_erase:
 	st-flash --connect-under-reset erase
+
+gdb: $(OUTPUT_DIR)/$(TARGET).elf
+	st-util &
+	$(GDB) -q -x $(GDB_CMDS_FILE) ./binaries/output.elf
 
 # only .bin files should be flashed as they are the raw binaries without any headers and all, unlike .elf
 # debugging should be done using -g .elfs

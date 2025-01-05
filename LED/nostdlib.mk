@@ -59,6 +59,7 @@ $(OUTPUT_DIR)/$(TARGET).elf: $(OBJS) $(STARTUP_OBJ)
 	$(LD) $(OBJS) $(STARTUP_OBJ) $(LDFLAGS) -o $@
 
 $(OUTPUT_DIR)/%.o: $(SRC_DIR)/%.c
+	st-flash write $< 0x08000000
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OUTPUT_DIR)/startup.o: $(STARTUP_DIR)/startup_nostdlib.c
