@@ -67,6 +67,15 @@ $(OUTPUT_DIR)/startup.o: $(STARTUP_DIR)/startup_nostdlib.c
 clean:
 	rm -rf $(OUTPUT_DIR)
 
+reset:
+	st-flash reset 
+
+erase:
+	st-flash erase
+
+rcnt_erase:
+	st-flash --connect-under-reset erase
+
 # only .bin files should be flashed as they are the raw binaries without any headers and all, unlike .elf
 # debugging should be done using -g .elfs
 
