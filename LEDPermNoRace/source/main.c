@@ -28,6 +28,16 @@
 #define CLEAR_BIT(reg, bit) ((reg) &= ~((1UL) << (bit)))
 #define TOGGLE_BIT(reg, bit) ((reg) ^= ((1UL) << (bit)))
 
+void delay(void);
+
+void delay(void)
+{
+    while (true)
+    {
+        __asm("nop");
+    }
+}
+
 int main(void)
 {
     // 1. Enable clock access to GPIOA via AHB1 bus
@@ -39,10 +49,7 @@ int main(void)
     CLEAR_BIT(GPIOA->MODER, PIN5 * 2 + 1);
 
     GPIOA->BSRR = 1UL << PIN5;
-    while (true)
-    {
-        __asm("nop");
-    }
 
+    delay();
     return 0;
 }

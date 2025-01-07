@@ -152,3 +152,9 @@ main_loop:
 - Function calls use `BL` to save the return address in `LR` and `BX LR` to return.
 - Stack management is critical for nested function calls to preserve the return address and other register values.
 - Conditional branches rely on the flags in the PSR for decision-making.
+
+## Stack Pointer
+
+The stack pointer contains the address of the last byte of the last value stored on stack.
+
+On little endian machines, the lowest byte of the value is stored on the lowest address, and the highest byte on the highest address.
