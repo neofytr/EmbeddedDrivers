@@ -20,10 +20,10 @@ The **ARM Architecture Procedure Call Standard (AAPCS)** specifies rules for fun
 ### **2. Stack Usage**
 - **Full Descending Stack:**
   - The stack grows **downwards** (to lower memory addresses).
-  - The stack pointer (`SP`) always points to the **next free location**.
+  - The stack pointer (`SP`) always points to the top byte of the stack.
   
 - **8-byte alignment:**
-  - The stack pointer must be aligned to an 8-byte boundary at all times, especially during function calls.
+  - The stack pointer must be aligned to an 8-byte (4-byte on Cortex M) boundary at all times, especially during function calls.
 
 ---
 
