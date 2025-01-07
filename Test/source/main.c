@@ -15,7 +15,7 @@ unsigned fact(unsigned n)
     }
     else
     {
-        return n * (n - 1);
+        return n * fact(n - 1);
     }
 }
 
