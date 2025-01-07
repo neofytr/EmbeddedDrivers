@@ -99,3 +99,7 @@ flash: $(OUTPUT_DIR)/$(TARGET).bin
 	st-flash reset
 
 .PHONY: all clean flash
+
+nostd:
+	make -f nostdlib.mk clean
+	make -f nostdlib.mk all

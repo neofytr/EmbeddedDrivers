@@ -103,3 +103,7 @@ flash: $(OUTPUT_DIR)/$(TARGET).bin
 
 gdb: $(OUTPUT_DIR)/$(TARGET).elf
 	$(GDB) -q -x $(GDB_CMDS_FILE) ./binaries/output.elf
+
+nostd:
+	make -f nostdlib.mk clean
+	make -f nostdlib.mk all
