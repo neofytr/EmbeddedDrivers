@@ -9,13 +9,16 @@
 
 unsigned fact(unsigned n)
 {
+    unsigned volatile foo[10];
+    foo[n] = n;
+
     if (!n)
     {
         return 1;
     }
     else
     {
-        return n * fact(n - 1);
+        return foo[n] * fact(n - 1);
     }
 }
 
