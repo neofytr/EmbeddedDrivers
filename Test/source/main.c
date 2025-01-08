@@ -36,7 +36,6 @@ int main(void)
     while (true)
     {
         fact(num++);
-        delay();
     }
 
     return 0;

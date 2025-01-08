@@ -78,10 +78,6 @@ erase:
 rcnt_erase:
 	st-flash --connect-under-reset erase
 
-gdb: $(OUTPUT_DIR)/$(TARGET).elf
-	st-util &
-	$(GDB) -q -x $(GDB_CMDS_FILE) ./binaries/output.elf
-
 # only .bin files should be flashed as they are the raw binaries without any headers and all, unlike .elf
 # debugging should be done using -g .elfs
 
