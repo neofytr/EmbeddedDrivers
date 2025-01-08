@@ -32,10 +32,11 @@ void delay(void)
 
 int main(void)
 {
-    unsigned num = 0;
+    volatile uint8_t a = 0;
+    volatile uint16_t b = 10;
+    volatile uint32_t c = 45;
     while (true)
     {
-        fact(num++);
     }
 
     return 0;
