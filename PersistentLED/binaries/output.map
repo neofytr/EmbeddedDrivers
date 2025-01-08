@@ -188,7 +188,7 @@ LOAD /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/a
                 0x08000000                vectors
                 0x08000150                        . = ALIGN (0x4)
 
-.text           0x08000150      0xbf4
+.text           0x08000150      0xbf0
                 0x08000150                        . = ALIGN (0x4)
  *(.text)
  .text          0x08000150        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crti.o
@@ -199,283 +199,283 @@ LOAD /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/a
                 0x08000158                _start
  .text          0x080001cc       0x40 binaries/main.o
                 0x080001cc                main
- .text          0x0800020c       0x8c binaries/startup.o
+ .text          0x0800020c       0x88 binaries/startup.o
                 0x0800020c                reset_handler
-                0x08000290                EXTI15_10_handler
-                0x08000290                DMA1_Stream7_handler
-                0x08000290                USART1_handler
-                0x08000290                TIM1_UP_TIM10_handler
-                0x08000290                EXTI0_handler
-                0x08000290                DMA1_Stream1_handler
-                0x08000290                SDIO_handler
-                0x08000290                NMI_handler
-                0x08000290                DMA2_Stream3_handler
-                0x08000290                TIM2_handler
-                0x08000290                USART2_handler
-                0x08000290                PVD_EXTI16_handler
-                0x08000290                SPI3_handler
-                0x08000290                TIM3_handler
-                0x08000290                WWDG_handler
-                0x08000290                default_handler
-                0x08000290                SPI2_handler
-                0x08000290                SVCall_handler
-                0x08000290                DMA2_Stream6_handler
-                0x08000290                DebugMonitor_handler
-                0x08000290                I2C3_ER_handler
-                0x08000290                SysTick_handler
-                0x08000290                DMA1_Stream3_handler
-                0x08000290                MemManage_handler
-                0x08000290                EXTI9_5_handler
-                0x08000290                SPI4_handler
-                0x08000290                HardFault_handler
-                0x08000290                DMA1_Stream5_handler
-                0x08000290                FPU_handler
-                0x08000290                DMA2_Stream5_handler
-                0x08000290                RCC_handler
-                0x08000290                EXTI2_handler
-                0x08000290                DMA2_Stream1_handler
-                0x08000290                I2C1_ER_handler
-                0x08000290                I2C2_EV_handler
-                0x08000290                RTC_WKUP_EXTI22_handler
-                0x08000290                EXTI3_handler
-                0x08000290                DMA2_Stream0_handler
-                0x08000290                FLASH_handler
-                0x08000290                TAMP_STAMP_EXTI21_handler
-                0x08000290                OTG_FS_handler
-                0x08000290                DMA1_Stream4_handler
-                0x08000290                I2C2_ER_handler
-                0x08000290                TIM1_BRK_TIM9_handler
-                0x08000290                USART6_handler
-                0x08000290                TIM4_handler
-                0x08000290                DMA1_Stream2_handler
-                0x08000290                EXTI4_handler
-                0x08000290                DMA1_Stream6_handler
-                0x08000290                ADC_handler
-                0x08000290                I2C1_EV_handler
-                0x08000290                SPI1_handler
-                0x08000290                OTG_FS_WKUP_EXTI18_handler
-                0x08000290                DMA2_Stream4_handler
-                0x08000290                PendSV_handler
-                0x08000290                DMA2_Stream7_handler
-                0x08000290                UsageFault_handler
-                0x08000290                DMA1_Stream0_handler
-                0x08000290                DMA2_Stream2_handler
-                0x08000290                EXTI1_handler
-                0x08000290                TIM1_TRG_COM_TIM11_handler
-                0x08000290                TIM5_handler
-                0x08000290                RTC_Alarm_EXTI17_handler
-                0x08000290                I2C3_EV_handler
-                0x08000290                BusFault_handler
-                0x08000290                TIM1_CC_handler
- .text          0x08000298      0x150 binaries/syscall.o
-                0x08000298                _sbrk
-                0x080002e0                _exit
-                0x080002ec                _read
-                0x08000306                _write
-                0x08000320                _close
-                0x08000336                _lseek
-                0x08000350                _fstat
-                0x08000368                _isatty
-                0x0800037e                _kill
-                0x08000398                _fcntl
-                0x080003b4                _dup
-                0x080003cc                _dup2
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-exit.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fwalk.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-memset.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-closer.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-reent.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-impure.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lseekr.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-readr.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-writer.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-init.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-freer.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mallocr.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mlock.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fflush.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-sbrkr.o)
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtend.o
- .text          0x080003e8        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtn.o
+                0x0800028c                EXTI15_10_handler
+                0x0800028c                DMA1_Stream7_handler
+                0x0800028c                USART1_handler
+                0x0800028c                TIM1_UP_TIM10_handler
+                0x0800028c                EXTI0_handler
+                0x0800028c                DMA1_Stream1_handler
+                0x0800028c                SDIO_handler
+                0x0800028c                NMI_handler
+                0x0800028c                DMA2_Stream3_handler
+                0x0800028c                TIM2_handler
+                0x0800028c                USART2_handler
+                0x0800028c                PVD_EXTI16_handler
+                0x0800028c                SPI3_handler
+                0x0800028c                TIM3_handler
+                0x0800028c                WWDG_handler
+                0x0800028c                default_handler
+                0x0800028c                SPI2_handler
+                0x0800028c                SVCall_handler
+                0x0800028c                DMA2_Stream6_handler
+                0x0800028c                DebugMonitor_handler
+                0x0800028c                I2C3_ER_handler
+                0x0800028c                SysTick_handler
+                0x0800028c                DMA1_Stream3_handler
+                0x0800028c                MemManage_handler
+                0x0800028c                EXTI9_5_handler
+                0x0800028c                SPI4_handler
+                0x0800028c                HardFault_handler
+                0x0800028c                DMA1_Stream5_handler
+                0x0800028c                FPU_handler
+                0x0800028c                DMA2_Stream5_handler
+                0x0800028c                RCC_handler
+                0x0800028c                EXTI2_handler
+                0x0800028c                DMA2_Stream1_handler
+                0x0800028c                I2C1_ER_handler
+                0x0800028c                I2C2_EV_handler
+                0x0800028c                RTC_WKUP_EXTI22_handler
+                0x0800028c                EXTI3_handler
+                0x0800028c                DMA2_Stream0_handler
+                0x0800028c                FLASH_handler
+                0x0800028c                TAMP_STAMP_EXTI21_handler
+                0x0800028c                OTG_FS_handler
+                0x0800028c                DMA1_Stream4_handler
+                0x0800028c                I2C2_ER_handler
+                0x0800028c                TIM1_BRK_TIM9_handler
+                0x0800028c                USART6_handler
+                0x0800028c                TIM4_handler
+                0x0800028c                DMA1_Stream2_handler
+                0x0800028c                EXTI4_handler
+                0x0800028c                DMA1_Stream6_handler
+                0x0800028c                ADC_handler
+                0x0800028c                I2C1_EV_handler
+                0x0800028c                SPI1_handler
+                0x0800028c                OTG_FS_WKUP_EXTI18_handler
+                0x0800028c                DMA2_Stream4_handler
+                0x0800028c                PendSV_handler
+                0x0800028c                DMA2_Stream7_handler
+                0x0800028c                UsageFault_handler
+                0x0800028c                DMA1_Stream0_handler
+                0x0800028c                DMA2_Stream2_handler
+                0x0800028c                EXTI1_handler
+                0x0800028c                TIM1_TRG_COM_TIM11_handler
+                0x0800028c                TIM5_handler
+                0x0800028c                RTC_Alarm_EXTI17_handler
+                0x0800028c                I2C3_EV_handler
+                0x0800028c                BusFault_handler
+                0x0800028c                TIM1_CC_handler
+ .text          0x08000294      0x150 binaries/syscall.o
+                0x08000294                _sbrk
+                0x080002dc                _exit
+                0x080002e8                _read
+                0x08000302                _write
+                0x0800031c                _close
+                0x08000332                _lseek
+                0x0800034c                _fstat
+                0x08000364                _isatty
+                0x0800037a                _kill
+                0x08000394                _fcntl
+                0x080003b0                _dup
+                0x080003c8                _dup2
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-exit.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fwalk.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-memset.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-closer.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-reent.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-impure.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lseekr.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-readr.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-writer.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-init.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-freer.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mallocr.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mlock.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fflush.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-sbrkr.o)
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtend.o
+ .text          0x080003e4        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtn.o
  *(.text*)
  .text.deregister_tm_clones
-                0x080003e8       0x1c /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x080003e4       0x1c /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  .text.register_tm_clones
-                0x08000404       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x08000400       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  .text.__do_global_dtors_aux
-                0x08000428       0x28 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x08000424       0x28 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  .text.frame_dummy
-                0x08000450       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
- .text.exit     0x08000474       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-exit.o)
-                0x08000474                exit
- .text.std      0x08000498       0x6c /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x0800044c       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .text.exit     0x08000470       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-exit.o)
+                0x08000470                exit
+ .text.std      0x08000494       0x6c /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
  .text.stdio_exit_handler
-                0x08000504       0x18 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x08000500       0x18 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
  .text.cleanup_stdio
-                0x0800051c       0x40 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x08000518       0x40 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
  .text.__fp_lock
-                0x0800055c       0x18 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x08000558       0x18 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
  .text.__fp_unlock
-                0x08000574       0x18 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x08000570       0x18 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
  .text.global_stdio_init.part.0
-                0x0800058c       0x40 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x08000588       0x40 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
  .text.__sfp_lock_acquire
-                0x080005cc        0xc /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
-                0x080005cc                __sfp_lock_acquire
+                0x080005c8        0xc /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x080005c8                __sfp_lock_acquire
  .text.__sfp_lock_release
-                0x080005d8        0xc /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
-                0x080005d8                __sfp_lock_release
- .text.__sfp    0x080005e4       0xa4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
-                0x080005e4                __sfp
- .text.__sinit  0x08000688       0x30 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
-                0x08000688                __sinit
+                0x080005d4        0xc /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x080005d4                __sfp_lock_release
+ .text.__sfp    0x080005e0       0xa4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x080005e0                __sfp
+ .text.__sinit  0x08000684       0x30 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x08000684                __sinit
  .text.__fp_lock_all
-                0x080006b8       0x1c /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
-                0x080006b8                __fp_lock_all
+                0x080006b4       0x1c /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x080006b4                __fp_lock_all
  .text.__fp_unlock_all
-                0x080006d4       0x1c /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
-                0x080006d4                __fp_unlock_all
+                0x080006d0       0x1c /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-findfp.o)
+                0x080006d0                __fp_unlock_all
  .text._fwalk_sglue
-                0x080006f0       0x3c /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fwalk.o)
-                0x080006f0                _fwalk_sglue
- .text.__sread  0x0800072c       0x22 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
-                0x0800072c                __sread
+                0x080006ec       0x3c /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fwalk.o)
+                0x080006ec                _fwalk_sglue
+ .text.__sread  0x08000728       0x22 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
+                0x08000728                __sread
  .text.__seofread
-                0x0800074e        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
-                0x0800074e                __seofread
+                0x0800074a        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
+                0x0800074a                __seofread
  .text.__swrite
-                0x08000752       0x38 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
-                0x08000752                __swrite
- .text.__sseek  0x0800078a       0x26 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
-                0x0800078a                __sseek
+                0x0800074e       0x38 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
+                0x0800074e                __swrite
+ .text.__sseek  0x08000786       0x26 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
+                0x08000786                __sseek
  .text.__sclose
-                0x080007b0        0x8 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
-                0x080007b0                __sclose
- .text.memset   0x080007b8       0x10 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-memset.o)
-                0x080007b8                memset
+                0x080007ac        0x8 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-stdio.o)
+                0x080007ac                __sclose
+ .text.memset   0x080007b4       0x10 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-memset.o)
+                0x080007b4                memset
  .text._close_r
-                0x080007c8       0x20 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-closer.o)
-                0x080007c8                _close_r
+                0x080007c4       0x20 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-closer.o)
+                0x080007c4                _close_r
  .text._reclaim_reent
-                0x080007e8       0xbc /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-reent.o)
-                0x080007e8                _reclaim_reent
+                0x080007e4       0xbc /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-reent.o)
+                0x080007e4                _reclaim_reent
  .text._lseek_r
-                0x080008a4       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lseekr.o)
-                0x080008a4                _lseek_r
- .text._read_r  0x080008c8       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-readr.o)
-                0x080008c8                _read_r
+                0x080008a0       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lseekr.o)
+                0x080008a0                _lseek_r
+ .text._read_r  0x080008c4       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-readr.o)
+                0x080008c4                _read_r
  .text._write_r
-                0x080008ec       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-writer.o)
-                0x080008ec                _write_r
+                0x080008e8       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-writer.o)
+                0x080008e8                _write_r
  .text.__libc_init_array
-                0x08000910       0x48 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-init.o)
-                0x08000910                __libc_init_array
+                0x0800090c       0x48 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-init.o)
+                0x0800090c                __libc_init_array
  .text.__retarget_lock_init
-                0x08000958        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
-                0x08000958                __retarget_lock_init
+                0x08000954        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+                0x08000954                __retarget_lock_init
  .text.__retarget_lock_init_recursive
-                0x0800095a        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
-                0x0800095a                __retarget_lock_init_recursive
+                0x08000956        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+                0x08000956                __retarget_lock_init_recursive
  .text.__retarget_lock_close
-                0x0800095c        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
-                0x0800095c                __retarget_lock_close
+                0x08000958        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+                0x08000958                __retarget_lock_close
  .text.__retarget_lock_close_recursive
-                0x0800095e        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
-                0x0800095e                __retarget_lock_close_recursive
+                0x0800095a        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+                0x0800095a                __retarget_lock_close_recursive
  .text.__retarget_lock_acquire
-                0x08000960        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
-                0x08000960                __retarget_lock_acquire
+                0x0800095c        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+                0x0800095c                __retarget_lock_acquire
  .text.__retarget_lock_acquire_recursive
-                0x08000962        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
-                0x08000962                __retarget_lock_acquire_recursive
+                0x0800095e        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+                0x0800095e                __retarget_lock_acquire_recursive
  .text.__retarget_lock_try_acquire
-                0x08000964        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
-                0x08000964                __retarget_lock_try_acquire
+                0x08000960        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+                0x08000960                __retarget_lock_try_acquire
  .text.__retarget_lock_try_acquire_recursive
-                0x08000968        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
-                0x08000968                __retarget_lock_try_acquire_recursive
+                0x08000964        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+                0x08000964                __retarget_lock_try_acquire_recursive
  .text.__retarget_lock_release
-                0x0800096c        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
-                0x0800096c                __retarget_lock_release
+                0x08000968        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+                0x08000968                __retarget_lock_release
  .text.__retarget_lock_release_recursive
-                0x0800096e        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
-                0x0800096e                __retarget_lock_release_recursive
- .text._free_r  0x08000970       0x94 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-freer.o)
-                0x08000970                _free_r
+                0x0800096a        0x2 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lock.o)
+                0x0800096a                __retarget_lock_release_recursive
+ .text._free_r  0x0800096c       0x94 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-freer.o)
+                0x0800096c                _free_r
  .text.sbrk_aligned
-                0x08000a04       0x44 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mallocr.o)
+                0x08000a00       0x44 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mallocr.o)
  .text._malloc_r
-                0x08000a48      0x100 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mallocr.o)
-                0x08000a48                _malloc_r
+                0x08000a44      0x100 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mallocr.o)
+                0x08000a44                _malloc_r
  .text.__malloc_lock
-                0x08000b48        0xc /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mlock.o)
-                0x08000b48                __malloc_lock
+                0x08000b44        0xc /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mlock.o)
+                0x08000b44                __malloc_lock
  .text.__malloc_unlock
-                0x08000b54        0xc /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mlock.o)
-                0x08000b54                __malloc_unlock
+                0x08000b50        0xc /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-mlock.o)
+                0x08000b50                __malloc_unlock
  .text.__sflush_r
-                0x08000b60      0x104 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fflush.o)
-                0x08000b60                __sflush_r
+                0x08000b5c      0x104 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fflush.o)
+                0x08000b5c                __sflush_r
  .text._fflush_r
-                0x08000c64       0x50 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fflush.o)
-                0x08000c64                _fflush_r
- .text.fflush   0x08000cb4       0x28 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fflush.o)
-                0x08000cb4                fflush
- .text._sbrk_r  0x08000cdc       0x20 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-sbrkr.o)
-                0x08000cdc                _sbrk_r
+                0x08000c60       0x50 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fflush.o)
+                0x08000c60                _fflush_r
+ .text.fflush   0x08000cb0       0x28 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-fflush.o)
+                0x08000cb0                fflush
+ .text._sbrk_r  0x08000cd8       0x20 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-sbrkr.o)
+                0x08000cd8                _sbrk_r
  *(.rodata)
  *(.rodata*)
  .rodata.all_implied_fbits
-                0x08000cfc       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x08000cf8       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  .rodata.all_implied_fbits
-                0x08000d20       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtend.o
-                0x08000d44                        . = ALIGN (0x4)
-                0x08000d44                        _etext = .
-                0x08000d68                        _sidata = LOADADDR (.data)
+                0x08000d1c       0x24 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtend.o
+                0x08000d40                        . = ALIGN (0x4)
+                0x08000d40                        _etext = .
+                0x08000d64                        _sidata = LOADADDR (.data)
 
-.glue_7         0x08000d44        0x0
- .glue_7        0x08000d44        0x0 linker stubs
+.glue_7         0x08000d40        0x0
+ .glue_7        0x08000d40        0x0 linker stubs
 
-.glue_7t        0x08000d44        0x0
- .glue_7t       0x08000d44        0x0 linker stubs
+.glue_7t        0x08000d40        0x0
+ .glue_7t       0x08000d40        0x0 linker stubs
 
-.vfp11_veneer   0x08000d44        0x0
- .vfp11_veneer  0x08000d44        0x0 linker stubs
+.vfp11_veneer   0x08000d40        0x0
+ .vfp11_veneer  0x08000d40        0x0 linker stubs
 
-.v4_bx          0x08000d44        0x0
- .v4_bx         0x08000d44        0x0 linker stubs
+.v4_bx          0x08000d40        0x0
+ .v4_bx         0x08000d40        0x0 linker stubs
 
-.init           0x08000d44        0xc
- .init          0x08000d44        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crti.o
-                0x08000d44                _init
- .init          0x08000d48        0x8 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtn.o
+.init           0x08000d40        0xc
+ .init          0x08000d40        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crti.o
+                0x08000d40                _init
+ .init          0x08000d44        0x8 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtn.o
 
-.fini           0x08000d50        0xc
- .fini          0x08000d50        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crti.o
-                0x08000d50                _fini
- .fini          0x08000d54        0x8 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtn.o
+.fini           0x08000d4c        0xc
+ .fini          0x08000d4c        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crti.o
+                0x08000d4c                _fini
+ .fini          0x08000d50        0x8 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtn.o
 
-.iplt           0x08000d5c        0x0
- .iplt          0x08000d5c        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x08000d58        0x0
+ .iplt          0x08000d58        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.eh_frame       0x08000d5c        0x4
- .eh_frame      0x08000d5c        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
- .eh_frame      0x08000d5c        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtend.o
+.eh_frame       0x08000d58        0x4
+ .eh_frame      0x08000d58        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x08000d58        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtend.o
 
-.ARM.extab      0x08000d60        0x0
- .ARM.extab     0x08000d60        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
+.ARM.extab      0x08000d5c        0x0
+ .ARM.extab     0x08000d5c        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
 
-.ARM.exidx      0x08000d60        0x8
- .ARM.exidx     0x08000d60        0x8 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
+.ARM.exidx      0x08000d5c        0x8
+ .ARM.exidx     0x08000d5c        0x8 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
                                  0x10 (size before relaxing)
 
-.rel.dyn        0x08000d68        0x0
- .rel.iplt      0x08000d68        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x08000d64        0x0
+ .rel.iplt      0x08000d64        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.data           0x20000000       0x64 load address 0x08000d68
+.data           0x20000000       0x64 load address 0x08000d64
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -520,23 +520,23 @@ LOAD /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/a
                 0x20000064                        . = ALIGN (0x4)
                 0x20000064                        _edata = .
 
-.init_array     0x20000064        0x4 load address 0x08000dcc
+.init_array     0x20000064        0x4 load address 0x08000dc8
  .init_array    0x20000064        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.fini_array     0x20000068        0x4 load address 0x08000dd0
+.fini_array     0x20000068        0x4 load address 0x08000dcc
  .fini_array    0x20000068        0x4 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
 
 .tm_clone_table
-                0x2000006c        0x0 load address 0x08000dd4
+                0x2000006c        0x0 load address 0x08000dd0
  .tm_clone_table
                 0x2000006c        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  .tm_clone_table
                 0x2000006c        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtend.o
 
-.igot.plt       0x2000006c        0x0 load address 0x08000dd4
+.igot.plt       0x2000006c        0x0 load address 0x08000dd0
  .igot.plt      0x2000006c        0x0 /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.bss            0x2000006c      0x16c load address 0x08000dd4
+.bss            0x2000006c      0x16c load address 0x08000dd0
                 0x2000006c                        . = ALIGN (0x4)
                 0x2000006c                        __bss_start__ = .
  *(.bss)
@@ -612,7 +612,7 @@ LOAD /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/a
                 0x200001d8                        . = ALIGN (0x4)
                 0x200001d8                        __bss_end__ = .
 
-.stack          0x200001d8      0x200 load address 0x08000dd4
+.stack          0x200001d8      0x200 load address 0x08000dd0
                 0x200001d8                        . = ALIGN (0x8)
                 0x200001d8                        _stack_start = .
                 0x200003d8                        . = (. + __max_stack_size)
@@ -620,7 +620,7 @@ LOAD /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/a
                 0x200003d8                        . = ALIGN (0x8)
                 0x200003d8                        _stack_end = .
 
-.heap           0x200003d8      0x400 load address 0x08000dd4
+.heap           0x200003d8      0x400 load address 0x08000dd0
                 0x200003d8                        . = ALIGN (0x8)
                 0x200003d8                        _heap_start = .
                 0x200007d8                        . = (. + __max_heap_size)
@@ -642,15 +642,15 @@ LOAD linker stubs
  .debug_line_str
                 0x00000000       0xcf /home/raj/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
 
-.debug_info     0x00000000      0xa4f
+.debug_info     0x00000000      0xa47
  .debug_info    0x00000000      0x30f binaries/main.o
- .debug_info    0x0000030f      0x1a0 binaries/startup.o
- .debug_info    0x000004af      0x5a0 binaries/syscall.o
+ .debug_info    0x0000030f      0x198 binaries/startup.o
+ .debug_info    0x000004a7      0x5a0 binaries/syscall.o
 
-.debug_abbrev   0x00000000      0x2ea
+.debug_abbrev   0x00000000      0x2d7
  .debug_abbrev  0x00000000       0xb6 binaries/main.o
- .debug_abbrev  0x000000b6      0x107 binaries/startup.o
- .debug_abbrev  0x000001bd      0x12d binaries/syscall.o
+ .debug_abbrev  0x000000b6       0xf4 binaries/startup.o
+ .debug_abbrev  0x000001aa      0x12d binaries/syscall.o
 
 .debug_aranges  0x00000000       0x60
  .debug_aranges
@@ -695,16 +695,16 @@ LOAD linker stubs
  .debug_macro   0x0000d575       0x16 binaries/syscall.o
  .debug_macro   0x0000d58b      0x4fe binaries/syscall.o
 
-.debug_line     0x00000000      0x81d
+.debug_line     0x00000000      0x825
  .debug_line    0x00000000      0x240 binaries/main.o
- .debug_line    0x00000240      0x275 binaries/startup.o
- .debug_line    0x000004b5      0x368 binaries/syscall.o
+ .debug_line    0x00000240      0x27d binaries/startup.o
+ .debug_line    0x000004bd      0x368 binaries/syscall.o
 
-.debug_str      0x00000000    0x4c6ff
- .debug_str     0x00000000    0x4c6ff binaries/main.o
+.debug_str      0x00000000    0x4c6f6
+ .debug_str     0x00000000    0x4c6f6 binaries/main.o
                               0x4812c (size before relaxing)
- .debug_str     0x0004c6ff     0x3dcb binaries/startup.o
- .debug_str     0x0004c6ff     0x83c8 binaries/syscall.o
+ .debug_str     0x0004c6f6     0x3dc2 binaries/startup.o
+ .debug_str     0x0004c6f6     0x83c8 binaries/syscall.o
 
 .debug_frame    0x00000000      0x7ac
  .debug_frame   0x00000000       0x28 binaries/main.o
