@@ -83,7 +83,7 @@ void FPU_handler(void) __attribute__((weak, alias("default_handler")));
 void SPI4_handler(void) __attribute__((weak, alias("default_handler")));
 
 volatile uint32_t vectors[VECTOR_TABLE_LEN] __attribute__((section(".isr_vector"))) = {
-    (uint32_t)STACK_START,                 // Initial stack pointer
+    (uint32_t)STACK_START,                 // Initial stack pointer; this value is put into the stack pointer after reset
     (uint32_t)&reset_handler,              // Reset handler
     (uint32_t)&NMI_handler,                // NMI handler
     (uint32_t)&HardFault_handler,          // HardFault handler
