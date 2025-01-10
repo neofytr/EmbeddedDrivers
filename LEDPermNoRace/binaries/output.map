@@ -661,7 +661,7 @@ LOAD linker stubs
  .debug_aranges
                 0x00000040       0x20 binaries/syscall.o
 
-.debug_macro    0x00000000     0xda89
+.debug_macro    0x00000000     0xda83
  .debug_macro   0x00000000       0x93 binaries/main.o
  .debug_macro   0x00000093      0xacc binaries/main.o
  .debug_macro   0x00000b5f       0x22 binaries/main.o
@@ -671,41 +671,41 @@ LOAD linker stubs
  .debug_macro   0x00000d2b       0x6a binaries/main.o
  .debug_macro   0x00000d95      0x1df binaries/main.o
  .debug_macro   0x00000f74       0x22 binaries/main.o
- .debug_macro   0x00000f96     0xb89c binaries/main.o
- .debug_macro   0x0000c832       0x81 binaries/startup.o
- .debug_macro   0x0000c8b3      0x184 binaries/syscall.o
- .debug_macro   0x0000ca37      0x190 binaries/syscall.o
- .debug_macro   0x0000cbc7       0x7b binaries/syscall.o
- .debug_macro   0x0000cc42       0x2a binaries/syscall.o
- .debug_macro   0x0000cc6c       0x3c binaries/syscall.o
- .debug_macro   0x0000cca8       0x34 binaries/syscall.o
- .debug_macro   0x0000ccdc      0x364 binaries/syscall.o
- .debug_macro   0x0000d040       0x16 binaries/syscall.o
- .debug_macro   0x0000d056       0x4a binaries/syscall.o
- .debug_macro   0x0000d0a0       0x34 binaries/syscall.o
- .debug_macro   0x0000d0d4       0x10 binaries/syscall.o
- .debug_macro   0x0000d0e4       0x58 binaries/syscall.o
- .debug_macro   0x0000d13c      0x1e5 binaries/syscall.o
- .debug_macro   0x0000d321       0x10 binaries/syscall.o
- .debug_macro   0x0000d331       0x3c binaries/syscall.o
- .debug_macro   0x0000d36d       0x10 binaries/syscall.o
- .debug_macro   0x0000d37d       0x10 binaries/syscall.o
- .debug_macro   0x0000d38d       0xb8 binaries/syscall.o
- .debug_macro   0x0000d445       0x2e binaries/syscall.o
- .debug_macro   0x0000d473      0x102 binaries/syscall.o
- .debug_macro   0x0000d575       0x16 binaries/syscall.o
- .debug_macro   0x0000d58b      0x4fe binaries/syscall.o
+ .debug_macro   0x00000f96     0xb896 binaries/main.o
+ .debug_macro   0x0000c82c       0x81 binaries/startup.o
+ .debug_macro   0x0000c8ad      0x184 binaries/syscall.o
+ .debug_macro   0x0000ca31      0x190 binaries/syscall.o
+ .debug_macro   0x0000cbc1       0x7b binaries/syscall.o
+ .debug_macro   0x0000cc3c       0x2a binaries/syscall.o
+ .debug_macro   0x0000cc66       0x3c binaries/syscall.o
+ .debug_macro   0x0000cca2       0x34 binaries/syscall.o
+ .debug_macro   0x0000ccd6      0x364 binaries/syscall.o
+ .debug_macro   0x0000d03a       0x16 binaries/syscall.o
+ .debug_macro   0x0000d050       0x4a binaries/syscall.o
+ .debug_macro   0x0000d09a       0x34 binaries/syscall.o
+ .debug_macro   0x0000d0ce       0x10 binaries/syscall.o
+ .debug_macro   0x0000d0de       0x58 binaries/syscall.o
+ .debug_macro   0x0000d136      0x1e5 binaries/syscall.o
+ .debug_macro   0x0000d31b       0x10 binaries/syscall.o
+ .debug_macro   0x0000d32b       0x3c binaries/syscall.o
+ .debug_macro   0x0000d367       0x10 binaries/syscall.o
+ .debug_macro   0x0000d377       0x10 binaries/syscall.o
+ .debug_macro   0x0000d387       0xb8 binaries/syscall.o
+ .debug_macro   0x0000d43f       0x2e binaries/syscall.o
+ .debug_macro   0x0000d46d      0x102 binaries/syscall.o
+ .debug_macro   0x0000d56f       0x16 binaries/syscall.o
+ .debug_macro   0x0000d585      0x4fe binaries/syscall.o
 
 .debug_line     0x00000000      0x83a
  .debug_line    0x00000000      0x255 binaries/main.o
  .debug_line    0x00000255      0x27d binaries/startup.o
  .debug_line    0x000004d2      0x368 binaries/syscall.o
 
-.debug_str      0x00000000    0x4c6fc
- .debug_str     0x00000000    0x4c6fc binaries/main.o
-                              0x48132 (size before relaxing)
- .debug_str     0x0004c6fc     0x3dc2 binaries/startup.o
- .debug_str     0x0004c6fc     0x83c8 binaries/syscall.o
+.debug_str      0x00000000    0x4c6d6
+ .debug_str     0x00000000    0x4c6d6 binaries/main.o
+                              0x4810c (size before relaxing)
+ .debug_str     0x0004c6d6     0x3dc2 binaries/startup.o
+ .debug_str     0x0004c6d6     0x83c8 binaries/syscall.o
 
 .debug_frame    0x00000000      0x7c8
  .debug_frame   0x00000000       0x44 binaries/main.o

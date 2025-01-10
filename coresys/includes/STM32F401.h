@@ -30,9 +30,6 @@
  * @{
  */
 
-#ifndef CEE42B51_BA06_47FC_85B8_34A48777F745
-#define CEE42B51_BA06_47FC_85B8_34A48777F745
-
 #define __IO volatile
 
 #ifndef __STM32F401xC_H
@@ -8609,6 +8606,3 @@ extern "C"
 #endif /* __cplusplus */
 
 #endif /* __STM32F401xC_H */
-
-
-#endif /* CEE42B51_BA06_47FC_85B8_34A48777F745 */
