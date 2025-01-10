@@ -8,8 +8,8 @@
 
 void reset_handler(void);
 void default_handler(void);
-/* void enable_fpu(void);
- */
+void enable_fpu(void);
+
 extern uint32_t _etext, _sdata, _edata, __bss_start__, __bss_end__, _sidata;
 extern int main(void);
 
@@ -167,11 +167,11 @@ volatile uint32_t vectors[VECTOR_TABLE_LEN] __attribute__((section(".isr_vector"
     (uint32_t)&SPI4_handler,               // SPI4 handler
 };
 
-/* __attribute__((used)) void enable_fpu(void)
+__attribute__((used)) void enable_fpu(void)
 {
     // set CP10 and CP11 to full access in CPACR
     SCB->CPACR |= (0xF << 20); // enable FPU access
-} */
+}
 
 __attribute__((used)) void reset_handler(void)
 {
@@ -197,8 +197,8 @@ __attribute__((used)) void reset_handler(void)
         *dst_ptr++ = 0;
     }
 
-    /* // enable the FPU
-    enable_fpu(); */
+    // enable the FPU
+    enable_fpu();
 
     // since we are not linking the C standard library with the project, there is no
     // need to call the C lib init constructor function __libc_init_array()

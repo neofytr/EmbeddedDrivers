@@ -32,6 +32,9 @@ void delay(void)
 
 int main(void)
 {
+    float a = 10.5f;
+    float b = 15.6;
+    float c = a + b;
     while (true)
     {
     }

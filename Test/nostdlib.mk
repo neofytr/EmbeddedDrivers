@@ -26,6 +26,7 @@ CFLAGS = -mcpu=cortex-m4 \
          -Wall \
          -Wextra \
 		 -nostdlib \
+		 -nostartfiles \
          -g3 \
          -I$(INC_DIR) \
          -I$(CORE_INC_DIR) \
