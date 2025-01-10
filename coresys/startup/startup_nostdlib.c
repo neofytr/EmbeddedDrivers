@@ -175,6 +175,9 @@ __attribute__((used)) void enable_fpu(void)
 
 __attribute__((used)) void reset_handler(void)
 {
+    /* The C standard dictates that all data sections are initialized with their */
+    /* initial values and all bss sections are filled with zeroes before main() is called */
+
     // copy .data section to SRAM
     uint32_t size = (uint32_t)&_edata - (uint32_t)&_sdata; // using _edata or _sdata directly in the C program will
                                                            // automatically dereference these symbols
