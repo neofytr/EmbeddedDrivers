@@ -93,8 +93,22 @@ void FPU_handler(void) __attribute__((weak, alias("default_handler")));
 void SPI4_handler(void) __attribute__((weak, alias("default_handler")));
 
 volatile uint32_t vectors[VECTOR_TABLE_LEN] __attribute__((section(".isr_vector"))) = {
-    (uint32_t)STACK_START,                 // Initial stack pointer; this value is put into the stack pointer after reset
-    (uint32_t)&reset_handler,              // Reset handler
+    (uint32_t)STACK_START,    // Initial stack pointer; this value is put into the stack pointer after reset
+    (uint32_t)&reset_handler, // Address of the reset handler
+
+    /* In ARM Cortex-M processors, the least significant bit (LSB) of a function address indicates the instruction set mode.
+   A value of `1` in the LSB specifies that the function should execute in Thumb mode, which is the only mode supported
+   by Cortex-M cores. Therefore, all function entry points in Cortex-M systems must have the LSB set to `1` to ensure
+   execution in Thumb mode.
+
+   This adjustment is not explicitly handled by the compiler in C code. Instead, it is added automatically by the
+   assembler or linker during symbol resolution when generating the final binary. This behavior applies universally to
+   function pointers and interrupt vector entries.
+
+   Note: The physical address of the `reset_handler` remains word-aligned (an even address). The addition of `1` to the
+   LSB is a convention used by ARM Cortex-M processors to signal the instruction set mode and does not affect memory
+   alignment or the actual location of the function in memory. */
+
     (uint32_t)&NMI_handler,                // NMI handler
     (uint32_t)&HardFault_handler,          // HardFault handler
     (uint32_t)&MemManage_handler,          // MemManage handler
