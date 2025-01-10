@@ -6,7 +6,8 @@ OBJCOPY = arm-none-eabi-objcopy
 INC_DIR = includes
 SRC_DIR = source
 CORESYS_DIR = ../coresys
-CORE_INC_DIR = ../coresys/includes
+STM_INC_DIR = ../coresys/includes
+CORE_INC_DIR = ../coresys/includes/core
 STARTUP_DIR = $(CORESYS_DIR)/startup
 SYSCALL_DIR = $(CORESYS_DIR)/syscalls
 LINKER_DIR = $(CORESYS_DIR)/linker_script
@@ -27,7 +28,8 @@ CFLAGS = -mcpu=cortex-m4 \
 		 -nostdlib \
          -g3 \
          -I$(INC_DIR) \
-         -I$(CORE_INC_DIR)
+         -I$(CORE_INC_DIR) \
+		 -I$(STM_INC_DIR)
 
 LDFLAGS = -T$(LINKER_DIR)/linker_script.ld \
  		  -Wl,-Map=$(OUTPUT_DIR)/$(TARGET).map \

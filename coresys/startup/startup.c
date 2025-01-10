@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include "core_cm4.h"
 
 #define SRAM_START 0x20000000U
 #define SRAM_SIZE (96 * 1024) // 96 KBs
@@ -7,10 +8,19 @@
 
 void reset_handler(void);
 void default_handler(void);
-
+/* void enable_fpu(void);
+ */
 extern uint32_t _etext, _sdata, _edata, __bss_start__, __bss_end__, _sidata;
 extern int main(void);
 extern void __libc_init_array(void);
+
+/* We have not enabled the hardware Floating Point Unit in this startup file; so in the make file,
+software floating point should be used while compiling/linking */
+
+/* When FPU enabled: -mfloat-abi=hard -mfpu=fpv4-sp-d16 */
+/* ARM FPU is fpv4 with single precision floating point support */
+
+/* When FPU disabled: -mfloat-abi=soft */
 
 #define VECTOR_TABLE_LEN 84
 
@@ -158,6 +168,12 @@ volatile uint32_t vectors[VECTOR_TABLE_LEN] __attribute__((section(".isr_vector"
     (uint32_t)&SPI4_handler,               // SPI4 handler
 };
 
+/* __attribute__((used)) void enable_fpu(void)
+{
+    // set CP10 and CP11 to full access in CPACR
+    SCB->CPACR |= (0xF << 20); // enable FPU access
+}
+ */
 __attribute__((used)) void reset_handler(void)
 {
     // copy .data section to SRAM
@@ -181,6 +197,10 @@ __attribute__((used)) void reset_handler(void)
     {
         *dst_ptr++ = 0;
     }
+
+    /* // enable FPU
+    enable_fpu(); */
+
     // call init function of C standard library
 
     __libc_init_array();
