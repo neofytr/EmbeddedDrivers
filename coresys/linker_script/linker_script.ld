@@ -2,6 +2,8 @@ ENTRY(reset_handler)
 
 MEMORY 
 {
+    /* FLASH is a read-only memory (ROM) and can only be initialized while flashing; and cannot be
+    modified by a running program; a running program can only modify the SRAM */
     FLASH(rx): ORIGIN = 0x08000000, LENGTH = 512K
     SRAM(rwx): ORIGIN = 0x20000000, LENGTH = 96K
 }
@@ -29,6 +31,8 @@ SECTIONS
         . = ALIGN(4);
         _etext = .;
     } > FLASH
+
+    /* We place the read only data section in flash since it's Read-Only Memory */
 
     _sidata = LOADADDR(.data);
 
