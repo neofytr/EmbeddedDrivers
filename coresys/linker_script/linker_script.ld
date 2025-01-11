@@ -36,6 +36,8 @@ SECTIONS
 
     _sidata = LOADADDR(.data);
 
+    /* _sidata now contains the start address of where the .data section is loaded in flash memory */
+
     .data :
     {
         . = ALIGN(4);
