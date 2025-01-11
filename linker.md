@@ -124,15 +124,15 @@ void reset_handler(void)
 
 ## **Comparative Summary**
 
-| Aspect                 | `> FLASH`                           | `> SRAM AT> FLASH`                   |
-|------------------------|-------------------------------------|--------------------------------------|
-| **Load Address**       | Flash memory (same as execution)    | Flash memory                         |
-| **Execution Address**  | Flash memory                        | SRAM                                 |
-| **Usage**              | `.text`, `.rodata` (code, read-only data) | `.data` (initialized variables)      |
-| **Initialization**     | No initialization needed            | Requires copying from Flash to SRAM  |
-| **Runtime Access**     | Directly from Flash                  | Directly from SRAM                    |
-| **Modifiability**      | Read-only                          | Read/Write                           |
-| **Startup Code**       | Minimal (no action required)        | Must copy data during startup        |
+| Aspect                | `> FLASH`                                 | `> SRAM AT> FLASH`                  |
+| --------------------- | ----------------------------------------- | ----------------------------------- |
+| **Load Address**      | Flash memory (same as execution)          | Flash memory                        |
+| **Execution Address** | Flash memory                              | SRAM                                |
+| **Usage**             | `.text`, `.rodata` (code, read-only data) | `.data` (initialized variables)     |
+| **Initialization**    | No initialization needed                  | Requires copying from Flash to SRAM |
+| **Runtime Access**    | Directly from Flash                       | Directly from SRAM                  |
+| **Modifiability**     | Read-only                                 | Read/Write                          |
+| **Startup Code**      | Minimal (no action required)              | Must copy data during startup       |
 
 ---
 
@@ -222,3 +222,99 @@ Understanding the distinction between **load addresses** and **execution address
 - **Enhance Performance:** Utilize SRAM for faster data access and manipulation during runtime.
 
 By strategically placing sections in appropriate memory regions, you can achieve a balance between performance, memory utilization, and system reliability.
+
+---------------------------------------------------------------------------
+
+### Load Address vs Execution Address in a Linker Script
+
+In the context of linker scripts, the **load address** and the **execution address** represent two different concepts:
+
+1. **Load Address (LMA)**:  
+   - The physical address in memory where the section is initially loaded (e.g., by a bootloader or programmer).
+   - For embedded systems, this is usually in non-volatile memory like Flash because the microcontroller typically boots from Flash.
+
+2. **Execution Address (VMA)**:  
+   - The address in memory where the section will be executed or accessed during runtime.
+   - This is typically in RAM for sections like `.data` that need to be writable during program execution.
+
+### `> SRAM AT > FLASH` Meaning
+This syntax in a linker script defines:
+- `> SRAM`: The **execution address (VMA)** for the section is in SRAM.
+- `AT > FLASH`: The **load address (LMA)** for the section is in Flash.
+
+This means that the section will be initially loaded into Flash, but at runtime, it will be copied to SRAM for execution (by the running program). This is commonly done for the `.data` section, which contains initialized variables that must be modifiable during program execution.
+
+### `> FLASH` or `> SRAM` Alone
+If you specify:
+- `> FLASH`:  
+  Both the **execution address (VMA)** and **load address (LMA)** are in Flash. The section stays in Flash, and the program will execute or access it directly from there.
+
+- `> SRAM`:  
+  Both the **execution address (VMA)** and **load address (LMA)** are in SRAM. The section is loaded directly into SRAM and executed from there.
+
+### Why Can't `.data` Be in Flash?
+The `.data` section contains initialized variables that need to be **modifiable** at runtime. Flash memory is **non-volatile** and usually **read-only** during program execution. To allow modification:
+1. The initial values of `.data` are stored in Flash (LMA).
+2. These values are copied into SRAM (VMA) by the startup code, where they can be modified during program execution.
+
+If you placed `.data` entirely in Flash (`> FLASH`), the variables would not be modifiable at runtime, causing program errors.
+
+### Why Can `.bss` and `.text` Be in Flash or SRAM?
+
+#### `.bss` Section:
+- `.bss` contains uninitialized global and static variables. These variables are **writable** during runtime, but since they are uninitialized, they do not need any initial values.
+- During startup, the program clears the `.bss` section in SRAM (e.g., by writing zeros), so `.bss` is placed directly in SRAM (`> SRAM`).
+- There is no need for a copy in Flash because it does not require any initial values.
+
+#### `.text` Section:
+- `.text` contains the program's executable code and **read-only** data (like string literals). This section is **read-only** and does not require runtime modification.
+- It can be executed directly from Flash (`> FLASH`), avoiding the need to copy it to SRAM. This saves SRAM space, which is often limited in embedded systems.
+
+Placing `.text` in SRAM (`> SRAM`) would waste SRAM, which is better reserved for modifiable data. 
+
+### Practical Example of Section Placements
+
+Consider a linker script snippet:
+```ld
+SECTIONS
+{
+    .text :
+    {
+        *(.text)       /* All executable code */
+        *(.rodata)     /* Read-only data */
+    } > FLASH
+
+    .data :
+    {
+        *(.data)       /* Initialized variables */
+    } > SRAM AT > FLASH
+
+    .bss :
+    {
+        *(.bss)        /* Uninitialized variables */
+    } > SRAM
+}
+```
+
+1. **`.text` in Flash (`> FLASH`)**:  
+   Executable code remains in Flash to save SRAM. It is read directly from Flash.
+
+2. **`.data` in SRAM (`> SRAM AT > FLASH`)**:  
+   Initial values are stored in Flash (LMA). During startup, these values are copied to SRAM (VMA) so that variables can be modified during execution.
+
+3. **`.bss` in SRAM (`> SRAM`)**:  
+   No initial values are needed. The startup code simply clears this section in SRAM.
+
+### Why Use `> SRAM AT > FLASH` for `.data` and Not `.text`?
+- **`.data`**: Requires initial values, but must be modifiable at runtime. This necessitates storage in Flash (LMA) for initial loading and runtime execution in SRAM (VMA).
+- **`.text`**: Does not require runtime modification. It can remain entirely in Flash for execution, saving valuable SRAM.
+
+### Conclusion
+The decision to use `> SRAM AT > FLASH`, `> FLASH`, or `> SRAM` depends on:
+1. **Memory constraints**: Flash is abundant but slow and read-only; SRAM is limited but fast and writable.
+2. **Section requirements**:
+   - `.data`: Needs writable execution address but initial values.
+   - `.bss`: Writable but does not need initial values.
+   - `.text`: Read-only and does not need modification.
+
+The structure ensures efficient use of memory resources while meeting the needs of the program.
