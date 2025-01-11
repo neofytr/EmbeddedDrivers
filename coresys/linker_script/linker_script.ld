@@ -48,6 +48,9 @@ SECTIONS
         _edata = .;       
     } > SRAM AT > FLASH
 
+    /* The references to symbols in .data section will be resolved according to the SRAM addresses;
+    since it's where the .data section is loaded for execution */
+
     .bss :
     {
         . = ALIGN(4);
