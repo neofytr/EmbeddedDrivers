@@ -228,6 +228,5 @@ __attribute__((used)) void reset_handler(void)
 
 __attribute__((used)) void default_handler(void)
 {
-    while (1)
-        ;
+    NVIC_SystemReset(); // reset the system
 }
