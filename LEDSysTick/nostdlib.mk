@@ -3,6 +3,7 @@ CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc
 OBJDUMP = arm-none-eabi-objdump
 OBJCOPY = arm-none-eabi-objcopy
+GDB = arm-none-eabi-gdb
 
 # Directory structure
 INC_DIR = includes
@@ -13,6 +14,7 @@ CORE_INC_DIR = ../coresys/includes/core
 STARTUP_DIR = $(CORESYS_DIR)/startup
 SYSCALL_DIR = $(CORESYS_DIR)/syscalls
 LINKER_DIR = $(CORESYS_DIR)/linker_script
+GDB_CMDS_FILE = gdbcmds.txt
 OUTPUT_DIR = binaries
 
 TARGET = output
