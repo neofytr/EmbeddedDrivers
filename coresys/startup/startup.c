@@ -95,7 +95,7 @@ void SPI4_handler(void) __attribute__((weak, alias("default_handler")));
 
 volatile uint32_t vectors[VECTOR_TABLE_LEN] __attribute__((section(".isr_vector"))) = {
     (uint32_t)STACK_START,    // Initial stack pointer; this value is put into the stack pointer after reset
-    (uint32_t)&reset_handler, // Reset handler
+    (uint32_t)&reset_handler, // Reset handler; the first value put into PC register after reset
 
     /* In ARM Cortex-M processors, the least significant bit (LSB) of a function address indicates the instruction set mode.
    A value of `1` in the LSB specifies that the function should execute in Thumb mode, which is the only mode supported
