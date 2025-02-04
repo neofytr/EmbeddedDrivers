@@ -34,10 +34,10 @@ LOAD binaries/startup.o
                 0x08000000                vectors
                 0x08000150                        . = ALIGN (0x4)
 
-.text           0x08000150       0x94
+.text           0x08000150       0xb8
                 0x08000150                        . = ALIGN (0x4)
  *(.text)
- .text          0x08000150       0x68 binaries/startup.o
+ .text          0x08000150       0x8c binaries/startup.o
                 0x08000150                EXTI15_10_handler
                 0x08000150                DMA1_Stream7_handler
                 0x08000150                USART1_handler
@@ -104,36 +104,37 @@ LOAD binaries/startup.o
                 0x08000150                I2C3_EV_handler
                 0x08000150                BusFault_handler
                 0x08000150                TIM1_CC_handler
-                0x08000152                enable_fpu
+                0x08000154                enable_fpu
                 0x08000168                reset_handler
+                0x080001b8                system_reset
  *(.text*)
- .text.startup  0x080001b8       0x2c binaries/main.o
-                0x080001b8                main
+ .text.startup  0x080001dc       0x2c binaries/main.o
+                0x080001dc                main
  *(.rodata)
  *(.rodata*)
-                0x080001e4                        . = ALIGN (0x4)
-                0x080001e4                        _etext = .
-                0x080001e4                        _sidata = LOADADDR (.data)
+                0x08000208                        . = ALIGN (0x4)
+                0x08000208                        _etext = .
+                0x08000208                        _sidata = LOADADDR (.data)
 
-.glue_7         0x080001e4        0x0
- .glue_7        0x080001e4        0x0 linker stubs
+.glue_7         0x08000208        0x0
+ .glue_7        0x08000208        0x0 linker stubs
 
-.glue_7t        0x080001e4        0x0
- .glue_7t       0x080001e4        0x0 linker stubs
+.glue_7t        0x08000208        0x0
+ .glue_7t       0x08000208        0x0 linker stubs
 
-.vfp11_veneer   0x080001e4        0x0
- .vfp11_veneer  0x080001e4        0x0 linker stubs
+.vfp11_veneer   0x08000208        0x0
+ .vfp11_veneer  0x08000208        0x0 linker stubs
 
-.v4_bx          0x080001e4        0x0
- .v4_bx         0x080001e4        0x0 linker stubs
+.v4_bx          0x08000208        0x0
+ .v4_bx         0x08000208        0x0 linker stubs
 
-.iplt           0x080001e4        0x0
- .iplt          0x080001e4        0x0 binaries/startup.o
+.iplt           0x08000208        0x0
+ .iplt          0x08000208        0x0 binaries/startup.o
 
-.rel.dyn        0x080001e4        0x0
- .rel.iplt      0x080001e4        0x0 binaries/startup.o
+.rel.dyn        0x08000208        0x0
+ .rel.iplt      0x08000208        0x0 binaries/startup.o
 
-.data           0x20000000        0x0 load address 0x080001e4
+.data           0x20000000        0x0 load address 0x08000208
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -141,10 +142,10 @@ LOAD binaries/startup.o
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _edata = .
 
-.igot.plt       0x20000000        0x0 load address 0x080001e4
+.igot.plt       0x20000000        0x0 load address 0x08000208
  .igot.plt      0x20000000        0x0 binaries/startup.o
 
-.bss            0x20000000        0x0 load address 0x080001e4
+.bss            0x20000000        0x0 load address 0x08000208
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        __bss_start__ = .
  *(.bss)
@@ -153,7 +154,7 @@ LOAD binaries/startup.o
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        __bss_end__ = .
 
-.stack          0x20000000      0x200 load address 0x080001e4
+.stack          0x20000000      0x200 load address 0x08000208
                 0x20000000                        . = ALIGN (0x8)
                 0x20000000                        _stack_start = .
                 0x20000200                        . = (. + __max_stack_size)
@@ -161,7 +162,7 @@ LOAD binaries/startup.o
                 0x20000200                        . = ALIGN (0x8)
                 0x20000200                        _stack_end = .
 
-.heap           0x20000200      0x400 load address 0x080001e4
+.heap           0x20000200      0x400 load address 0x08000208
                 0x20000200                        . = ALIGN (0x8)
                 0x20000200                        _heap_start = .
                 0x20000600                        . = (. + __max_heap_size)

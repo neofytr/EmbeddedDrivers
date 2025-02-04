@@ -9,6 +9,7 @@
 void reset_handler(void);
 void default_handler(void);
 void enable_fpu(void);
+void system_reset(void);
 
 extern uint32_t _etext, _sdata, _edata, __bss_start__, __bss_end__, _sidata;
 extern int main(void);
@@ -226,7 +227,27 @@ __attribute__((used)) void reset_handler(void)
         ;
 }
 
-__attribute__((used)) void default_handler(void)
+__attribute__((used, naked, noreturn)) void system_reset(void)
 {
-    NVIC_SystemReset(); // reset the system
+    // __NVIC_SystemReset()
+    __DSB(); /* Ensure all outstanding memory accesses included
+              buffered write are completed before reset */
+    SCB->AIRCR = (uint32_t)((0x5FAUL << SCB_AIRCR_VECTKEY_Pos) |
+                            (SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk) |
+                            SCB_AIRCR_SYSRESETREQ_Msk); /* Keep priority group unchanged */
+    __DSB();                                            /* Ensure completion of memory access */
+
+    for (;;) /* wait until reset */
+    {
+        __NOP();
+    }
 }
+
+// noreturn tells the compiler that the function won't return so optimize accordingly
+
+__attribute__((used, naked)) void default_handler(void)
+{
+    __asm volatile("b system_reset\n"); // reset the system
+}
+
+// the naked attribute tells the compiler not generate function prologue and epilogue code
