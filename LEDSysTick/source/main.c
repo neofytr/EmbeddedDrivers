@@ -18,10 +18,10 @@
  */
 
 // Clock enable bit for GPIOA in RCC_AHB1ENR register
-#define GPIOA_EN (0)
+#define GPIOA_EN (0U)
 
 // Pin 5 definitions
-#define PIN5 (5) // Bit 5 in ODR register for PA5
+#define PIN5 (5U) // Bit 5 in ODR register for PA5
 // For output pin: MODER is 01
 
 // Bit manipulation macros
@@ -51,7 +51,10 @@ void setup_systick(void)
 #define SYSTICK_INTERRUPT (1)
     SET_BIT(SysTick->CTRL, SYSTICK_INTERRUPT); // enables the system interrupt request
 
+    NVIC_EnableIRQ(SysTick_IRQn); // enable systick interrupts; i think they are also enabled by default?
+
     SysTick->LOAD = 0x00FFFFFFU & (unsigned int)(1 * SYS_CLOCK - 1); // timer with a period of SYS_CLOCK processor clock cycles
+    // systick counts from zero so we subtract a one
 }
 
 void SysTick_handler(void)
