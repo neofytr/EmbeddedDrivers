@@ -59,7 +59,15 @@ void setup_systick(void)
 
 void SysTick_handler(void)
 {
-    GPIOA->ODR ^= 1UL << PIN5;
+    // these enable and disable interrupt functions are inlined and are single assembly instructions long and typically run
+    // in a single CPU cycle thus avoiding function call and instruction overhead
+    __disable_irq();           // disable interrupts (atomically) before entering a critical section
+    GPIOA->ODR ^= 1UL << PIN5; // a load-modify-store sequence on the GPIOA output data register that can
+                               // lead to race conditions if some other interrupt handler also modifies this register between the read and write of this
+                               // register in this handler
+    __enable_irq();            // enable interrupts (atomically) after leaving a critical section
+    // any interrupt that came in between the critical section will not be lost and will execute
+    // after the interrupts are enabled again
 }
 
 int main(void)

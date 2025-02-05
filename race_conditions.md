@@ -1,6 +1,8 @@
 ### **Race Condition: Definition and Explanation**
 A **race condition** is a scenario in which the behavior of a program depends on the relative timing of events such as thread execution, interrupt occurrences, or memory accesses. This leads to unpredictable behavior, often causing bugs that are difficult to reproduce and debug.
 
+Race Condition occurs when two or more pieces of code that can preempt each other access a shared resource in such a way that the result depends on the sequence of execution of these pieces of code.
+
 A race condition occurs when:
 1. Two or more execution flows access a shared resource (such as a memory location, register, or variable).
 2. At least one of these accesses is a write operation.
