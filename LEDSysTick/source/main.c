@@ -68,6 +68,15 @@ void SysTick_handler(void)
     __enable_irq();            // enable interrupts (atomically) after leaving a critical section
     // any interrupt that came in between the critical section will not be lost and will execute
     // after the interrupts are enabled again
+
+    // the introduction of critical section serialized the access of the shared resource,
+    // and made it atomic (indivisible); all the pieces of code accessing the shared resource
+    // can only do it serially now, one after the other, in a mutually exclusive manner, eliminating
+    // any chance of race conditions
+
+    // bit-banding and specific registers that alter a bit in a register atomically by just writing
+    // to those registers (like GPIO->BSRR) are provided to avoid load-modify-store instruction sequence
+    // when accessing particular bits of a peripheral registers to avoid race conditions
 }
 
 int main(void)

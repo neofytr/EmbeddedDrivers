@@ -6,6 +6,13 @@
 #define SRAM_END ((SRAM_START) + (SRAM_SIZE))
 #define STACK_START (SRAM_END)
 
+/* 
+
+The CPU is in the privileged state after the reset and the reset handler executes in the
+privileged state; since I don't change the CPU state anytime later (for now atleast), the CPU is executing in
+the privileged state all the time 
+
+*/
 void reset_handler(void);
 void default_handler(void);
 void enable_fpu(void);
