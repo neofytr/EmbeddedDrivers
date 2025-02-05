@@ -62,6 +62,8 @@ SECTIONS
         __bss_end__ = .;      
     } > SRAM
 
+    /* Stack is required by the AAPCS standard to be aligned at 8 bytes */
+    
     .stack (NOLOAD) :
     {
         . = ALIGN(8);
