@@ -62,7 +62,22 @@ SECTIONS
         __bss_end__ = .;      
     } > SRAM
 
+    .heap (NOLOAD) :
+    {
+        . = ALIGN(8);
+        _heap_start = .;
+        . = . + __max_heap_size;
+        . = ALIGN(8);
+        _heap_end = .;
+        _end = .;           
+    } > SRAM
+
     /* Stack is required by the AAPCS standard to be aligned at 8 bytes */
+    /* Here, we have placed the stack as the last section, which can lead to the corruption
+    of other sections in the SRAM if the stack overflows; another approach is to make stack the
+    first section in the SRAM so that if it overflows, it goes into the unmapped region (below
+    0x20000000) preventing corruption of any other section on SRAM and also causing the 
+    Hard Fault exception */
     
     .stack (NOLOAD) :
     {
@@ -73,15 +88,7 @@ SECTIONS
         _stack_end = .;
     } > SRAM
 
-    .heap (NOLOAD) :
-    {
-        . = ALIGN(8);
-        _heap_start = .;
-        . = . + __max_heap_size;
-        . = ALIGN(8);
-        _heap_end = .;
-        _end = .;           
-    } > SRAM
+    
 
     /DISCARD/ :
     {
