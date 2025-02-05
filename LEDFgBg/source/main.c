@@ -31,6 +31,9 @@
 
 void setup_systick(void);
 void LED_setup(void);
+static inline uint32_t get_tick_count(void);
+static inline void turn_led_off(void);
+static inline void turn_led_on(void);
 
 #define SYS_CLOCK 16000000U // 16MHz is the default system clock without any configuration
 #define SMALLEST_UNIT_OF_TIME_MEASURED (1000U)
@@ -60,6 +63,25 @@ void SysTick_handler(void)
     // enable irq before and after accessing this variable here
 }
 
+static inline uint32_t get_tick_count(void)
+{
+    uint32_t curr_count;
+    __disable_irq();
+    curr_count = tick_count;
+    __enable_irq();
+    return curr_count;
+}
+
+static inline void turn_led_on(void)
+{
+    SET_BIT(GPIOA->BSRR, PIN5);
+}
+
+static inline void turn_led_off(void)
+{
+    SET_BIT(GPIOA->BSRR, PIN5 + 16U);
+}
+
 void LED_setup(void)
 {
     // 1. Enable clock access to GPIOA via AHB1 bus
@@ -71,12 +93,58 @@ void LED_setup(void)
     CLEAR_BIT(GPIOA->MODER, PIN5 * 2 + 1);
 }
 
+bool has_time_passed(uint32_t time, uint32_t start_tick_count)
+{
+    // time is in miliseconds
+    return (get_tick_count() - start_tick_count) >= time;
+}
+
+static enum {
+    INITIAL,
+    LED_OFF,
+    LED_ON,
+} state;
+
 int main(void)
 {
 
     setup_systick();
+    LED_setup();
+
+    state = INITIAL;
+    static uint32_t start;
 
     while (true)
-        ;
+    {
+        switch (state)
+        {
+        case INITIAL:
+        {
+            start = get_tick_count();
+            state = LED_OFF;
+            break;
+        }
+        case LED_OFF:
+        {
+            if (has_time_passed(1000U, start))
+            {
+                turn_led_on();
+                start = get_tick_count();
+                state = LED_ON;
+            }
+            break;
+        }
+        case LED_ON:
+        {
+            if (has_time_passed(1000U, start))
+            {
+                turn_led_off();
+                start = get_tick_count();
+                state = LED_OFF;
+            }
+            break;
+        }
+        }
+    }
     return 0;
 }
