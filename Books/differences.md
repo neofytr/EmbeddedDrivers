@@ -29,7 +29,7 @@
 
 ### **3. Cortex-M4 Devices Generic User Guide**  
 - **Purpose:**  
-  - A high-level guide on how to use Cortex-M4-based **microcontrollers** (like STM32, NXP, etc.), focusing on **how to program and interact with peripherals** rather than the CPU itself.  
+  - A high-level programmer's guide to using the CPU, focusing on **how to program the processor and interact with it's private peripherals**.
 - **Scope:**  
   - Explains things like **system initialization, clock setup, exception handling, and power management**.  
   - Covers **CMSIS (Cortex Microcontroller Software Interface Standard)**, which helps with **software portability** across different Cortex-M devices.  
