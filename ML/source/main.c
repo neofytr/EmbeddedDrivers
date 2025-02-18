@@ -30,8 +30,8 @@ int main()
     };
 
     NN *nn = nn_alloc(arch, ARRAY_LEN(arch));
-    randomize_parameters_NN(nn, 0, 0);
-    
+    randomize_parameters_NN(nn, 10, 0);
+
     learn(nn,
           0.01,
           100000,

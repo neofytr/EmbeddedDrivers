@@ -20,7 +20,7 @@ Mat *mat_alloc(uint32_t rows, uint32_t cols)
     a->es = NN_MALLOC(rows * cols * sizeof(ELEMENT_TYPE));
     if (!a->es)
     {
-        NN_FREE(a); 
+        NN_FREE(a);
         return NULL;
     }
 
