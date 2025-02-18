@@ -218,9 +218,10 @@ __attribute__((used)) void reset_handler(void)
     // enable FPU
     enable_fpu();
 
-    // call init function of C standard library
+    /* // call init function of C standard library
 
-    __libc_init_array();
+    __libc_init_array(); */
+    // is not required
 
     // call main()
     main();

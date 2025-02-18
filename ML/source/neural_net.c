@@ -2,9 +2,14 @@
 
 /* I need to improve the random number generator */
 
+static inline ELEMENT_TYPE rand_element(ELEMENT_TYPE high, ELEMENT_TYPE low);
+static inline ELEMENT_TYPE sigmoid(ELEMENT_TYPE element);
+static inline Mat mat_row(Mat *a, uint32_t row);
+static inline void mat_copy(Mat *dst, Mat *src);
+
 Mat *mat_alloc(uint32_t rows, uint32_t cols)
 {
-    Mat *a = NN_NN_MALLOC(sizeof(Mat));
+    Mat *a = NN_MALLOC(sizeof(Mat));
     if (!a)
     {
         return NULL;
@@ -12,9 +17,10 @@ Mat *mat_alloc(uint32_t rows, uint32_t cols)
 
     a->rows = rows;
     a->cols = cols;
-    a->es = NN_NN_MALLOC(rows * cols * sizeof(ELEMENT_TYPE));
+    a->es = NN_MALLOC(rows * cols * sizeof(ELEMENT_TYPE));
     if (!a->es)
     {
+        NN_FREE(a); 
         return NULL;
     }
 
@@ -103,21 +109,20 @@ void mat_fill(Mat *a, ELEMENT_TYPE element)
 void mat_dot(Mat *dst, Mat *a, Mat *b)
 {
     uint32_t n = a->cols;
-
     uint32_t rows = dst->rows;
     uint32_t cols = dst->cols;
 
-    // #pragma omp parallel for
-    //  #pragma omp target teams distribute parallel for
+    // processing in smaller chunks to avoid stack overflow
     for (uint32_t i = 0; i < rows; i++)
     {
         for (uint32_t j = 0; j < cols; j++)
         {
-            MAT_AT(dst, i, j) = 0;
+            ELEMENT_TYPE sum = 0;
             for (uint32_t k = 0; k < n; k++)
             {
-                MAT_AT(dst, i, j) += MAT_AT(a, i, k) * MAT_AT(b, k, j);
+                sum += MAT_AT(a, i, k) * MAT_AT(b, k, j);
             }
+            MAT_AT(dst, i, j) = sum;
         }
     }
 }
@@ -174,9 +179,9 @@ void nn_print(NN *nn, const char *name, uint32_t padding)
     printf("%s: [\n", name);
     for (uint32_t i = 1; i < nn->arch_count; i++)
     {
-        sprintf(buffer, "Weigth Matrix, Layer No. %zu", i);
+        sprintf(buffer, "Weigth Matrix, Layer No. %lu", i);
         mat_print(nn->ws[i], buffer, padding);
-        sprintf(buffer, "Bias Matrix, Layer No. %zu", i);
+        sprintf(buffer, "Bias Matrix, Layer No. %lu", i);
         mat_print(nn->bs[i], buffer, padding);
     }
     printf("]\n");
@@ -184,7 +189,7 @@ void nn_print(NN *nn, const char *name, uint32_t padding)
 
 NN *nn_alloc(uint32_t *arch, uint32_t arch_count)
 {
-    NN *nn = NN_NN_MALLOC(sizeof(NN));
+    NN *nn = NN_MALLOC(sizeof(NN));
     if (!nn)
     {
         return NULL;
@@ -216,7 +221,7 @@ NN *nn_alloc(uint32_t *arch, uint32_t arch_count)
 
     for (uint32_t i = 0; i < arch_count; i++)
     {
-        if (i == 0)
+        if (!i)
         {
             nn->ws[i] = NULL;
             nn->bs[i] = NULL;
@@ -278,11 +283,11 @@ ELEMENT_TYPE cost_NN(NN *nn, Mat *training_input, Mat *training_output)
 
         for (uint32_t j = 0; j < cols; j++)
         {
-            ELEMENT_TYPE d = MAT_AT(NN_OUTPUT(nn), 0, j) - MAT_AT(y_, 0, j); // Correct row access
+            ELEMENT_TYPE d = MAT_AT(NN_OUTPUT(nn), 0, j) - MAT_AT(y_, 0, j); // correct row access
             result += d * d;
         }
     }
-    return (result / rows);
+    return (result / rows) + 1e-10;
 }
 
 void diff(NN *nn, Mat *training_input, Mat *training_output, ELEMENT_TYPE eps, ELEMENT_TYPE learning_rate, Mat *temp_para, ELEMENT_TYPE c)
@@ -306,7 +311,6 @@ void delta(NN *nn, Mat *training_input, Mat *training_output, ELEMENT_TYPE learn
 {
     uint32_t arch_count = nn->arch_count;
     uint32_t neurons_in_last_layer = NEURONS_IN_LAYER(nn, arch_count - 1);
-    uint32_t neurons_in_first_layer = NEURONS_IN_LAYER(nn, 0);
 
     for (uint32_t j = 0; j < training_input->rows; j++)
     {
@@ -336,11 +340,11 @@ void delta(NN *nn, Mat *training_input, Mat *training_output, ELEMENT_TYPE learn
             }
         }
 
-        gradient_descent(nn, learning_rate, j);
+        gradient_descent(nn, learning_rate);
     }
 }
 
-void gradient_descent(NN *nn, ELEMENT_TYPE learning_rate, uint32_t epoch)
+void gradient_descent(NN *nn, ELEMENT_TYPE learning_rate)
 {
     uint32_t arch_count = nn->arch_count;
     // #pragma omp parallel for collapse(1)
@@ -359,7 +363,7 @@ void gradient_descent(NN *nn, ELEMENT_TYPE learning_rate, uint32_t epoch)
     }
 }
 
-void learn(NN *nn, ELEMENT_TYPE eps, ELEMENT_TYPE learning_rate, uint32_t learning_iterations, Mat *training_input, Mat *training_output)
+void learn(NN *nn, ELEMENT_TYPE learning_rate, uint32_t learning_iterations, Mat *training_input, Mat *training_output)
 {
 
     for (uint32_t i = 0; i < learning_iterations; i++)

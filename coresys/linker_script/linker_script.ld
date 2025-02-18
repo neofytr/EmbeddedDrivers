@@ -9,8 +9,8 @@ MEMORY
 }
 
 /* Define stack and heap sizes */
-__max_heap_size = 0x400;  /* 1KB heap */
-__max_stack_size = 0x200; /* 512B stack */
+__max_heap_size = 0x1f00; 
+__max_stack_size = 0x1f00; 
 
 SECTIONS
 {
