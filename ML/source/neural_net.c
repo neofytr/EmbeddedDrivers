@@ -4,7 +4,7 @@
 
 static inline ELEMENT_TYPE rand_element(ELEMENT_TYPE high, ELEMENT_TYPE low);
 static inline ELEMENT_TYPE sigmoid(ELEMENT_TYPE element);
-static inline Mat mat_row(Mat *a, uint32_t row);
+static inline Mat *mat_row_safe(Mat *a, uint32_t row);
 static inline void mat_copy(Mat *dst, Mat *src);
 
 Mat *mat_alloc(uint32_t rows, uint32_t cols)
@@ -147,14 +147,25 @@ void mat_sig(Mat *a)
     }
 }
 
-static inline Mat mat_row(Mat *a, uint32_t row)
+static inline Mat *mat_row_safe(Mat *a, uint32_t row)
 {
-    return (Mat){
-        .rows = 1,
-        .cols = a->cols,
-        .stride = a->cols,
-        .es = &MAT_AT(a, row, 0),
-    };
+    if (!a || row >= a->rows)
+    {
+        return NULL;
+    }
+
+    Mat *result = mat_alloc(1, a->cols);
+    if (!result)
+    {
+        return NULL;
+    }
+
+    for (uint32_t j = 0; j < a->cols; j++)
+    {
+        MAT_AT(result, 0, j) = MAT_AT(a, row, j);
+    }
+
+    return result;
 }
 
 static inline void mat_copy(Mat *dst, Mat *src)
@@ -265,31 +276,6 @@ void forward_NN(NN *nn)
     }
 }
 
-ELEMENT_TYPE cost_NN(NN *nn, Mat *training_input, Mat *training_output)
-{
-    uint32_t rows = training_input->rows;
-    uint32_t cols = training_output->cols;
-
-    ELEMENT_TYPE result = (ELEMENT_TYPE)0;
-    // #pragma omp parallel for reduction(+:result)
-    for (uint32_t i = 0; i < rows; i++)
-    {
-        Mat x = mat_row(training_input, i);
-        Mat y = mat_row(training_output, i);
-        Mat *y_ = &y;
-
-        *(NN_INPUT(nn)) = x;
-        forward_NN(nn);
-
-        for (uint32_t j = 0; j < cols; j++)
-        {
-            ELEMENT_TYPE d = MAT_AT(NN_OUTPUT(nn), 0, j) - MAT_AT(y_, 0, j); // correct row access
-            result += d * d;
-        }
-    }
-    return (result / rows) + 1e-10;
-}
-
 void diff(NN *nn, Mat *training_input, Mat *training_output, ELEMENT_TYPE eps, ELEMENT_TYPE learning_rate, Mat *temp_para, ELEMENT_TYPE c)
 {
     ELEMENT_TYPE saved;
@@ -307,22 +293,81 @@ void diff(NN *nn, Mat *training_input, Mat *training_output, ELEMENT_TYPE eps, E
     }
 }
 
+ELEMENT_TYPE cost_NN(NN *nn, Mat *training_input, Mat *training_output)
+{
+    if (!nn || !training_input || !training_output)
+    {
+        return (ELEMENT_TYPE)0;
+    }
+
+    uint32_t rows = training_input->rows;
+    uint32_t cols = training_output->cols;
+
+    ELEMENT_TYPE result = (ELEMENT_TYPE)0;
+    // #pragma omp parallel for reduction(+:result)
+    for (uint32_t i = 0; i < rows; i++)
+    {
+        Mat *x = mat_row_safe(training_input, i);
+        Mat *y_ = mat_row_safe(training_output, i);
+
+        if (!x || !y_)
+        {
+            if (x)
+                mat_dealloc(x);
+            if (y_)
+                mat_dealloc(y_);
+            return (ELEMENT_TYPE)0;
+        }
+
+        mat_copy(NN_INPUT(nn), x);
+        forward_NN(nn);
+
+        for (uint32_t j = 0; j < cols; j++)
+        {
+            ELEMENT_TYPE d = MAT_AT(NN_OUTPUT(nn), 0, j) - MAT_AT(y_, 0, j);
+            result += d * d;
+        }
+
+        mat_dealloc(x);
+        mat_dealloc(y_);
+    }
+
+    return (result / rows) + 1e-10;
+}
+
 void delta(NN *nn, Mat *training_input, Mat *training_output, ELEMENT_TYPE learning_rate)
 {
+    if (!nn || !training_input || !training_output)
+    {
+        return;
+    }
+
     uint32_t arch_count = nn->arch_count;
     uint32_t neurons_in_last_layer = NEURONS_IN_LAYER(nn, arch_count - 1);
 
     for (uint32_t j = 0; j < training_input->rows; j++)
     {
-        Mat x = mat_row(training_input, j);
-        *(NN_INPUT(nn)) = x;
+        Mat *x = mat_row_safe(training_input, j);
+        if (!x)
+        {
+            return;
+        }
+
+        mat_copy(NN_INPUT(nn), x);
         forward_NN(nn);
+
+        Mat *y_ = mat_row_safe(training_output, j);
+        if (!y_)
+        {
+            mat_dealloc(x);
+            return;
+        }
 
         // #pragma omp parallel for
         for (uint32_t k = 0; k < neurons_in_last_layer; k++)
         {
             ELEMENT_TYPE a = MAT_AT(NN_OUTPUT(nn), 0, k);
-            ELEMENT_TYPE error = a - MAT_AT(training_output, j, k);
+            ELEMENT_TYPE error = a - MAT_AT(y_, 0, k);
             MAT_AT(DS_OF_LAYER(nn, arch_count - 1), 0, k) = (2 * error * a * (1 - a)) / neurons_in_last_layer;
         }
 
@@ -341,6 +386,9 @@ void delta(NN *nn, Mat *training_input, Mat *training_output, ELEMENT_TYPE learn
         }
 
         gradient_descent(nn, learning_rate);
+
+        mat_dealloc(x);
+        mat_dealloc(y_);
     }
 }
 
@@ -382,4 +430,28 @@ void learn(NN *nn, ELEMENT_TYPE learning_rate, uint32_t learning_iterations, Mat
     }
     ELEMENT_TYPE volatile cost = cost_NN(nn, training_input, training_output);
     // printf("Final Cost: %f\n", cost);
+}
+
+void nn_dealloc(NN *nn)
+{
+    if (!nn)
+        return;
+
+    for (uint32_t i = 0; i < nn->arch_count; i++)
+    {
+        if (nn->ws[i])
+            mat_dealloc(nn->ws[i]);
+        if (nn->bs[i])
+            mat_dealloc(nn->bs[i]);
+        if (nn->as[i])
+            mat_dealloc(nn->as[i]);
+        if (nn->ds[i])
+            mat_dealloc(nn->ds[i]);
+    }
+
+    NN_FREE(nn->ws);
+    NN_FREE(nn->bs);
+    NN_FREE(nn->as);
+    NN_FREE(nn->ds);
+    NN_FREE(nn);
 }

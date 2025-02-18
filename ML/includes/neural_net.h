@@ -93,7 +93,7 @@ typedef struct
 
 void nn_print(NN *nn, const char *name, uint32_t padding);
 NN *nn_alloc(uint32_t *arch, uint32_t arch_count);
-void nn_delloc(NN *nn);
+void nn_dealloc(NN *nn);
 void randomize_parameters_NN(NN *nn, int high, int low);
 void forward_NN(NN *nn);
 ELEMENT_TYPE cost_NN(NN *nn, Mat *training_input, Mat *training_output);

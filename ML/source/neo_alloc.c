@@ -7,9 +7,9 @@ extern uint8_t _heap_start[];
 /**
  * Configuration constants for the heap allocator
  */
-#define HEAP_SIZE 0x400  // 1KB total heap size
-#define SPLIT_CUTOFF 16  // Minimum remaining size needed to split a chunk into two
-#define DEFRAG_CUTOFF 10 // Number of free operations before automatic defragmentation
+#define HEAP_SIZE 0x10000 // 64KB total heap size
+#define SPLIT_CUTOFF 8    // Minimum remaining size needed to split a chunk into two
+#define DEFRAG_CUTOFF 2   // Number of free operations before automatic defragmentation
 
 /**
  * Chunk header structure (4 bytes total)
@@ -30,11 +30,14 @@ typedef struct
 } __attribute__((packed)) ChunkHeader;
 
 // Define the heap region bounds using external symbol
-static uint8_t *const heap_start = &_heap_start[0];
-static uint8_t *const heap_end = &_heap_start[HEAP_SIZE];
+static uint8_t *heap_start = &_heap_start[0];
+static uint8_t *heap_end = &_heap_start[HEAP_SIZE];
 
 // Counter for tracking free operations to trigger defragmentation
 static volatile uint8_t free_calls = 0;
+
+// Flag to indicate if the heap has been initialized
+static volatile bool heap_initialized = false;
 
 /**
  * Validates if a chunk header pointer is within the heap bounds
@@ -46,7 +49,19 @@ static volatile uint8_t free_calls = 0;
 static bool is_valid_header(const ChunkHeader *header)
 {
     return ((uint8_t *)header >= heap_start &&
-            (uint8_t *)header + sizeof(ChunkHeader) <= heap_end);
+            (uint8_t *)header + sizeof(ChunkHeader) <= heap_end &&
+            ((uint8_t *)header - heap_start) % 4 == 0); // Check 4-byte alignment
+}
+
+/**
+ * Validates if a chunk's size would exceed heap boundaries
+ *
+ * @param header Pointer to the chunk header to validate
+ * @return true if chunk size is valid, false otherwise
+ */
+static bool is_valid_chunk_size(const ChunkHeader *header)
+{
+    return ((uint8_t *)header + sizeof(ChunkHeader) + header->size <= heap_end);
 }
 
 /**
@@ -59,7 +74,14 @@ static ChunkHeader *get_header(size_t offset)
 {
     if (offset >= HEAP_SIZE - sizeof(ChunkHeader))
         return NULL;
-    return (ChunkHeader *)(heap_start + offset);
+
+    ChunkHeader *header = (ChunkHeader *)(heap_start + offset);
+
+    // Validate the header to ensure it's within bounds and has valid size
+    if (!is_valid_header(header) || !is_valid_chunk_size(header))
+        return NULL;
+
+    return header;
 }
 
 /**
@@ -76,27 +98,58 @@ static ChunkHeader *get_header(size_t offset)
 static void defragment(void)
 {
     size_t curr_offset = 0;
+    bool merged;
 
-    while (curr_offset < HEAP_SIZE)
+    do
     {
-        ChunkHeader *curr = get_header(curr_offset);
-        if (!curr)
-            break;
+        merged = false;
+        curr_offset = 0;
 
-        if (!curr->allocated)
+        while (curr_offset < HEAP_SIZE)
         {
-            size_t next_offset = curr_offset + sizeof(ChunkHeader) + curr->size;
-            ChunkHeader *next = get_header(next_offset);
+            ChunkHeader *curr = get_header(curr_offset);
+            if (!curr)
+                break;
 
-            if (next && !next->allocated)
+            if (!curr->allocated)
             {
-                // Merge with next chunk by absorbing its space
-                curr->size += sizeof(ChunkHeader) + next->size;
-                continue; // Recheck the merged chunk for more possible merges
-            }
-        }
+                size_t next_offset = curr_offset + sizeof(ChunkHeader) + curr->size;
+                ChunkHeader *next = get_header(next_offset);
 
-        curr_offset += sizeof(ChunkHeader) + curr->size;
+                if (next && !next->allocated)
+                {
+                    // Merge with next chunk by absorbing its space
+                    if (curr->size <= UINT16_MAX - sizeof(ChunkHeader) - next->size)
+                    {
+                        curr->size += sizeof(ChunkHeader) + next->size;
+                        merged = true;
+                    }
+                }
+            }
+
+            // Always move to the next chunk to avoid infinite loop
+            curr_offset += sizeof(ChunkHeader) + curr->size;
+        }
+    } while (merged); // Continue defragmenting until no more merges occur
+}
+
+/**
+ * Safe way to enable interrupts that ensures we don't accidentally enable them
+ * if they were already disabled before our critical section.
+ */
+static uint32_t primask_bit;
+
+static inline void safe_disable_irq(void)
+{
+    primask_bit = __get_PRIMASK();
+    __disable_irq();
+}
+
+static inline void safe_enable_irq(void)
+{
+    if (!primask_bit)
+    {
+        __enable_irq();
     }
 }
 
@@ -105,18 +158,24 @@ static void defragment(void)
  * This must be called before any allocation operations.
  *
  * The function:
- * 1. Disables interrupts to ensure thread safety
+ * 1. Safely disables interrupts to ensure thread safety
  * 2. Creates an initial free chunk spanning the entire heap
- * 3. Re-enables interrupts
+ * 3. Safely re-enables interrupts
  */
 void neo_heap_init(void)
 {
-    __disable_irq();
-    ChunkHeader *initial = (ChunkHeader *)heap_start;
-    initial->allocated = 0;
-    initial->padding = 0;
-    initial->size = HEAP_SIZE - sizeof(ChunkHeader);
-    __enable_irq();
+    safe_disable_irq();
+
+    if (!heap_initialized)
+    {
+        ChunkHeader *initial = (ChunkHeader *)heap_start;
+        initial->allocated = 0;
+        initial->padding = 0;
+        initial->size = HEAP_SIZE - sizeof(ChunkHeader);
+        heap_initialized = true;
+    }
+
+    safe_enable_irq();
 }
 
 /**
@@ -133,10 +192,10 @@ void neo_heap_init(void)
  */
 void *neo_alloc(uint16_t size)
 {
-    if (size == 0)
+    if (!size || !heap_initialized)
         return NULL;
 
-    __disable_irq();
+    safe_disable_irq();
 
     // Round size up to nearest multiple of 4 for alignment
     uint16_t aligned_size = (size + 3) & ~3;
@@ -154,9 +213,9 @@ void *neo_alloc(uint16_t size)
             if (curr->size >= aligned_size + sizeof(ChunkHeader) + SPLIT_CUTOFF)
             {
                 size_t new_offset = curr_offset + sizeof(ChunkHeader) + aligned_size;
-                ChunkHeader *new_chunk = get_header(new_offset);
+                ChunkHeader *new_chunk = (ChunkHeader *)(heap_start + new_offset);
 
-                if (new_chunk)
+                if (is_valid_header(new_chunk))
                 {
                     // Initialize the new chunk from the split
                     new_chunk->allocated = 0;
@@ -167,6 +226,11 @@ void *neo_alloc(uint16_t size)
                     curr->allocated = 1;
                     curr->size = aligned_size;
                 }
+                else
+                {
+                    // If new chunk header would be invalid, don't split
+                    curr->allocated = 1;
+                }
             }
             else
             {
@@ -174,14 +238,14 @@ void *neo_alloc(uint16_t size)
                 curr->allocated = 1;
             }
 
-            __enable_irq();
+            safe_enable_irq();
             return heap_start + curr_offset + sizeof(ChunkHeader);
         }
 
         curr_offset += sizeof(ChunkHeader) + curr->size;
     }
 
-    __enable_irq();
+    safe_enable_irq();
     return NULL;
 }
 
@@ -194,23 +258,28 @@ void *neo_alloc(uint16_t size)
  * 3. Increments free counter and triggers defragmentation if threshold reached
  *
  * @param ptr Pointer to memory region to free
+ * @return true if successfully freed, false if invalid pointer
  */
 void neo_free(void *ptr)
 {
-    __disable_irq();
+    if (!ptr || !heap_initialized)
+        return;
 
-    if (!ptr || (uint8_t *)ptr < heap_start || (uint8_t *)ptr >= heap_end)
+    safe_disable_irq();
+
+    if ((uint8_t *)ptr < heap_start + sizeof(ChunkHeader) ||
+        (uint8_t *)ptr >= heap_end)
     {
-        __enable_irq();
+        safe_enable_irq();
         return;
     }
 
     // Get header pointer by subtracting header size from data pointer
     ChunkHeader *header = (ChunkHeader *)((uint8_t *)ptr - sizeof(ChunkHeader));
 
-    if (!is_valid_header(header) || !header->allocated)
+    if (!is_valid_header(header) || !header->allocated || !is_valid_chunk_size(header))
     {
-        __enable_irq();
+        safe_enable_irq();
         return;
     }
 
@@ -223,5 +292,70 @@ void neo_free(void *ptr)
         free_calls = 0;
     }
 
-    __enable_irq();
+    safe_enable_irq();
+    return;
+}
+
+/**
+ * Provides information about the current heap state.
+ *
+ * @param total_bytes [out] Total heap size in bytes
+ * @param used_bytes [out] Currently allocated bytes
+ * @param free_bytes [out] Available bytes
+ * @param largest_block [out] Size of largest contiguous free block
+ */
+void neo_heap_info(size_t *total_bytes, size_t *used_bytes,
+                   size_t *free_bytes, size_t *largest_block)
+{
+    size_t used = 0, free = 0, largest = 0;
+    size_t curr_offset = 0;
+
+    safe_disable_irq();
+
+    if (!heap_initialized)
+    {
+        if (total_bytes)
+            *total_bytes = HEAP_SIZE;
+        if (used_bytes)
+            *used_bytes = 0;
+        if (free_bytes)
+            *free_bytes = 0;
+        if (largest_block)
+            *largest_block = 0;
+        safe_enable_irq();
+        return;
+    }
+
+    while (curr_offset < HEAP_SIZE)
+    {
+        ChunkHeader *curr = get_header(curr_offset);
+        if (!curr)
+            break;
+
+        if (curr->allocated)
+        {
+            used += curr->size;
+        }
+        else
+        {
+            free += curr->size;
+            if (curr->size > largest)
+            {
+                largest = curr->size;
+            }
+        }
+
+        curr_offset += sizeof(ChunkHeader) + curr->size;
+    }
+
+    if (total_bytes)
+        *total_bytes = HEAP_SIZE;
+    if (used_bytes)
+        *used_bytes = used;
+    if (free_bytes)
+        *free_bytes = free;
+    if (largest_block)
+        *largest_block = largest;
+
+    safe_enable_irq();
 }

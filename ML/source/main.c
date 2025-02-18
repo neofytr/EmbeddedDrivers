@@ -1,5 +1,7 @@
 #include "neural_net.h"
 
+uint32_t arch[] = {2, 2, 1};
+
 ELEMENT_TYPE xor_data[] = {
     // Input pairs followed by output
     1, 0, 0, // 1 XOR 0 = 1
@@ -11,7 +13,6 @@ ELEMENT_TYPE xor_data[] = {
 int main()
 {
     neo_heap_init();
-    uint32_t arch[] = {2, 2, 1};
     Mat *training_input = neo_alloc(sizeof(Mat));
     *training_input = (Mat){
         .rows = 4,

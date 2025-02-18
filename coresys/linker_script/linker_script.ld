@@ -9,9 +9,9 @@ MEMORY
 }
 
 /* Define stack and heap sizes */
-__max_heap_size = 0x1f00; 
-__max_stack_size = 0x1f00; 
-
+__max_heap_size = 0x10000;  
+__max_stack_size = 0x4000;  
+ 
 SECTIONS
 {
     .isr_vector :
