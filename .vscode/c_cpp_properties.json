@@ -4,7 +4,8 @@
             "name": "stm32f401re",
             "includePath": [
                 "${workspaceFolder}/**",
-                "~/Desktop/EmbeddedDrivers/coresys/includes"
+                "~/Desktop/EmbeddedDrivers/coresys/includes",
+                "~/Desktop/EmbeddedDrivers/ML/includes"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

@@ -1,4 +1,4 @@
-#include "../include/neural_net.h"
+#include "neural_net.h"
 
 /* I need to improve the random number generator */
 
